@@ -1,42 +1,47 @@
 let myDishes = [
     {
-        "name" : "Fufu",
-        "price": 5,
+        "name" : "Fufu - 300g",
+        "price": 5.00,
         "description": "A traditional West African dish made from cassava flour, often served with soup or stew.",
     },
     {
-        "name" : "Jollof Rice",
-        "price": 7,
+        "name" : "Jollof Rice - 300g",
+        "price": 7.00,
         "description": "A popular West African dish made with rice, tomatoes, onions, and various spices.",
     },
+    
+
+]
+
+let mySupplements = [
     {
         "name" : "Pepper Stew",
-        "price": 6,
+        "price": 14.00,
         "description": "A spicy stew made with peppers, tomatoes, onions.",
     },
     {
         "name": "Casava Leaves",
-        "price": 8,
+        "price": 8.50,
         "description": "A dish made from the leaves of the cassava plant, often cooked with palm oil and spices.",
     },
     {
         "name": "Okra Soup",
-        "price": 9,
+        "price": 12.50,
         "description": "A flavorful soup made with okra, tomatoes, onions, and various spices.",
     },
     {
         "name": "Capenta",
-        "price": 10,
+        "price": 10.50,
         "description": "A dish made from small dried fish, often served with sadza or rice.",
     },
     {
         "name": "Ogbono Soup",
-        "price": 11,
+        "price": 13.50,
         "description": "A thick soup made from ground ogbono seeds, often cooked with meat and vegetables.",
     },
     {
         "name": "Madesu",
-        "price": 12,
+        "price": 12.00,
         "description": "A dish made from black-eyed peas, often cooked with tomatoes and spices.",
     }
 
@@ -92,3 +97,13 @@ let myalcoholicDrinks = [
         "price": 7.00,
     }
 ]
+
+
+
+let mealOfTheDay = {
+    "name": "Jollof Rice with Okra Soup",
+    "price": 15,
+    "description": "A delicious combination of spicy Jollof rice served with a hearty Okra soup.",
+}
+
+let deliveryCost = 3.50;
