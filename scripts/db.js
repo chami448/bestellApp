@@ -106,4 +106,6 @@ let mealOfTheDay = {
     "description": "A delicious combination of spicy Jollof rice served with a hearty Okra soup.",
 }
 
-let deliveryCost = 3.50;
+let deliveryCost = 2.99;
+
+let favoriteDishes = [];
