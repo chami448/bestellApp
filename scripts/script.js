@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPage();
     
 
-    renderPageMainOnly();
-
 
 
     const startCategory = getInitialCategory();
@@ -96,16 +94,6 @@ function setupMenuTabs() {
         });
     });
 }
-
-
-function renderPageMainOnly() {
-    const main = document.querySelector('main');
-    if (!main) return;
-    main.outerHTML = renderMain(); 
-}
-
-
-
 
 
 
