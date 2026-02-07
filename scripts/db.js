@@ -110,7 +110,8 @@ let deliveryCost = 2.99;
 
 let favoriteDishes = [];
 
-
+let cartItems = [];
+let deliveryMode = "delivery";
 
 const categoryMap = {
     dishes: myDishes,

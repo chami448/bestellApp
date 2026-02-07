@@ -1,5 +1,4 @@
-let cartItems = [];
-let deliveryMode = "delivery";
+
 
 function loadFromLocalStorage() {
     const stored = localStorage.getItem('favoriteDishes');
@@ -126,10 +125,7 @@ function setupMenuActions() {
 }
 
 
-/**
- * @param {string} itemName - Name des Items
- * @param {string} category - Kategorie des Items
- */
+
 function handleAddToBasket(itemName, category) {
     const items = categoryMap[category] || [];
     const item = items.find(i => i.name === itemName);
@@ -138,22 +134,13 @@ function handleAddToBasket(itemName, category) {
     addToCart(item, category);
 }
 
-/**
- * Verarbeitet das Hinzufügen/Entfernen eines Items aus Favoriten
- * @param {Element} menuItem - Das Menu-Item DOM-Element
- * @param {string} itemName - Name des Items
- * @param {string} category - Kategorie des Items
- * @param {number} itemIndex - Index im Array
- */
+
 function handleToggleFavorite(menuItem, itemName, category, itemIndex) {
-    // Hole das komplette Item-Objekt aus der Datenbank
     const items = categoryMap[category];
     const item = items[itemIndex];
     
-    // Toggle in favoriteDishes
     toggleFavorite(itemName, item, category);
     
-    // Visuelles Feedback: Like-Button Toggle
     const likeBtn = menuItem.querySelector('.likeBtn');
     const likedIcon = menuItem.querySelector('.likedIcon');
     

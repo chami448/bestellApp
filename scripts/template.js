@@ -44,7 +44,6 @@ function createMenuItem(item, category, index, isFavorite) {
 
 
 
-// Mama'Afrika App - Template Script
 
 
 
