@@ -9,6 +9,19 @@
 	border-radius: 8px;
 	overflow: hidden;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+	transition: width 0.25s ease, flex-basis 0.25s ease, transform 0.25s ease;
+}
+
+#basketWrapper.is-closed {
+	width: 0;
+	flex: 0 0 0;
+	border: none;
+	box-shadow: none;
+}
+
+#basketWrapper.is-closed * {
+	opacity: 0;
+	pointer-events: none;
 }
 
 #basketContent {
@@ -16,6 +29,52 @@
 	min-height: 120px;
 	border-bottom: 1px solid #eee;
 	color: #666;
+}
+
+.basket-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.75rem 0;
+	border-bottom: 1px dashed #ddd;
+}
+
+.basket-item:last-child {
+	border-bottom: none;
+}
+
+.basket-item-info {
+	display: flex;
+	justify-content: space-between;
+	font-weight: 600;
+	color: #333;
+}
+
+.basket-item-actions {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.qty-btn,
+.remove-btn {
+	border: 1px solid #ddd;
+	background: #f5f5f5;
+	border-radius: 6px;
+	padding: 0.3rem 0.6rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.qty-btn:hover,
+.remove-btn:hover {
+	background: #e8e8e8;
+}
+
+.basket-item-qty {
+	min-width: 24px;
+	text-align: center;
+	font-weight: 600;
 }
 
 #basketFooter {
