@@ -3,88 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bestell-App</title>
+    <title>Bestell-App - Mama'Afrika</title>
+    
     <link rel="stylesheet" href="./styles/standards.css">
+    <link rel="stylesheet" href="./styles/menu.css">
     <link rel="shortcut icon" href="./image/icon/clinteastwood-meal-2411129_640.png" type="image/x-icon">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="headerImage">
-            <figure>
-                <img src="./image/img/suggabearsclub-africa-9904843_640.png" alt="Logo">
-                <figcaption>Mama'Afrika</figcaption>
-            </figure> 
-        </div>
-        <div class="headerIcon">
-            <img src="./image/icon/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="basket icon">
-        </div>
-    </header>
-    <main id="mainContent">
-        <section class="headSection">
-            <div class="mainBanner">
-                <img src="./image/img/buffetcrush-christmas-wallpaper-2009590_640.jpg" alt="header backgroundimage">
-                <img src="./image/icon/clker-free-vector-images-place-setting-309980_640.png" alt="icon">
-            </div>   
-        </section>
-        <section class="mainTitleSectioon">
-                <div class="mainSectionHeader">
-                    <h1>Mama'Afrika Menü:</h1>
-                    <p>Hier kannst du deine Bestellung überprüfen und anpassen.</p>
-                    <p><span class="higlight">Hinweis:</span> Es gibt nur zwei Hauptgerichte — <span class="higlight">Fufu</span> und <span class="higlight">Jollofreis</span>. Alle weiteren Optionen sind Beilagen, die Sie nach Wunsch auswählen können.</p>
-                </div>
-        </section>
-        <section class="mainContentSection">
-            <div id="basketWrapper">
-                <div id="basketContent">
-                    <!-- Dynamischer Inhalt wird hier eingefügt -->
-                </div>
-                <div id="basketFooter">
-                    <div id="totalPriceContainer">
-                        <span>Gesamtpreis:</span>
-                        <span>Lieferkosten: 2,99 €</span>
-                        <button id="btnDeliever">Lieferung</button><button id="btnPickUp">Abholung</button>
-                        <span id="totalPrice"></span>
-                    </div>
-                    <button id="orderButton">Bestellung abschicken</button>
-                </div>
-            </div>
-                <div id="mainContentWrapper">
-                    <div class="menuTitle">
-                        <span id="menuOrderTitle">Hauptgerichte</span><span id="menuOrderTitle">Beilagen</span><span id="menuOrderTitle">Alkoholische Getränke</span><span id="menuOrderTitle">Soft-Getränke</span><span id="menuOrderTitle">Speise des Tages</span><span id="MenuOrderTitle">Favoriten</span>
-                    </div>
-                    <div class="menuList">
-                        <div class="menuItem">
-                            <div class="addBtnContainer">
-                                <img src="./image/icon/add_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="add Button">
-                            </div>
-                            <div id="likeBtnContainer">
-                                <img src="./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="like Button">
-                            </div>
-                            <div id="addedLikedFood">
-                                <img src="./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="added liked food">
-                            </div>
-                            <div id="menuItemSectionOrder">
-                                <span id="jsObjekt"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </section>
-        <section class="footerSection">
-            <div class="footerSectionBanner">
-                <img src="./image/img/luk1004-food-3083223_640.jpg" alt="footer banner">
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="footerContent">
-                <span>&copy; Mama'Afrika 2024. Alle Rechte vorbehalten.</span>
-                <span>Bewertung: (4,2 von 5 Sternen)</span>
-            </div>
-    </footer>
+    <div id="app"></div>
     
+    <script src="./scripts/db.js"></script>
+    <script src="./scripts/template.js"></script>
+    <script src="./scripts/script.js"></script>
 </body>
 </html>

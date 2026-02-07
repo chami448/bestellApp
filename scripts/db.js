@@ -109,3 +109,16 @@ let mealOfTheDay = {
 let deliveryCost = 2.99;
 
 let favoriteDishes = [];
+
+
+
+const categoryMap = {
+    dishes: myDishes,
+    supplements: mySupplements,
+    alcoholicDrinks: myalcoholicDrinks,
+    drinks: myDrinks,
+    mealOfTheDay: [mealOfTheDay],
+    favorites: favoriteDishes,
+};
+
+
