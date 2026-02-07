@@ -281,6 +281,7 @@ function updateCartUI() {
 
     if (cartItems.length === 0) {
         basketContent.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
+        updateCartBadge();
         return;
     }
 
@@ -301,6 +302,8 @@ function updateCartUI() {
             </div>
         `;
     }).join("");
+
+    updateCartBadge();
 }
 
 function calculateSubtotal() {
@@ -324,4 +327,14 @@ function updateTotals() {
     if (subtotalEl) subtotalEl.textContent = `${subtotal.toFixed(2)} €`;
     if (deliveryEl) deliveryEl.textContent = `${delivery.toFixed(2)} €`;
     if (totalEl) totalEl.textContent = `${total.toFixed(2)} €`;
+
+    updateCartBadge();
+}
+
+function updateCartBadge() {
+    const badge = document.getElementById("cartBadge");
+    if (!badge) return;
+
+    const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    badge.textContent = String(count);
 }
