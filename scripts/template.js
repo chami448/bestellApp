@@ -1,62 +1,42 @@
-
-
-
-
-
-
 function createMenuItem(item, category, index, isFavorite) {
-    const div = document.createElement('div');
-    div.className = 'menuItem';
-    div.dataset.itemName = item.name;
-    div.dataset.category = category;
-    div.dataset.itemIndex = index;
-    
+  const div = document.createElement("div");
+  div.className = "menuItem";
+  div.dataset.itemName = item.name;
+  div.dataset.category = category;
+  div.dataset.itemIndex = index;
 
-    
-    div.innerHTML = `
+  div.innerHTML = `
         <div class="menuItemContent">
             <div class="menuItemHeader">
                 <h3>${item.name}</h3>
                 <span class="price">${item.price.toFixed(2)} €</span>
             </div>
-            <p class="description">${item.description || 'Keine Beschreibung vorhanden'}</p>
+            <p class="description">${item.description || "Keine Beschreibung vorhanden"}</p>
             
             <div class="menuItemActions">
                 <button class="addBtn" title="Zum Korb hinzufügen">
                     <img src="./image/icon/add_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Hinzufügen">
                 </button>
                 
-                <button class="likeBtn ${isFavorite ? 'liked' : ''}" title="Zu Favoriten hinzufügen">
+                <button class="likeBtn ${isFavorite ? "liked" : ""}" title="Zu Favoriten hinzufügen">
                     <img class="likeIcon" src="./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Favorit">
-                    <img class="likedIcon ${isFavorite ? 'active' : ''}" src="./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Ist Favorit">
+                    <img class="likedIcon ${isFavorite ? "active" : ""}" src="./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Ist Favorit">
                 </button>
             </div>
         </div>
     `;
-    
-    return div;
+
+  return div;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function renderPage() {
-    const app = document.getElementById('app');
-    if (!app) return;
-    app.innerHTML = renderHeader() + renderMain() + renderFooter();
+  const app = document.getElementById("app");
+  if (!app) return;
+  app.innerHTML = renderHeader() + renderMain() + renderFooter();
 }
 
-
 function renderHeader() {
-    return `
+  return `
         <header>
             <div class="headerImage">
                 <figure>
@@ -74,10 +54,8 @@ function renderHeader() {
     `;
 }
 
-
-
 function renderMain() {
-    return `
+  return `
         <main id="mainContent">
             ${renderBannerSection()}
             ${renderInfoSection()}
@@ -87,13 +65,8 @@ function renderMain() {
     `;
 }
 
-
-
-
-
-
 function renderBannerSection() {
-    return `
+  return `
         <section class="headSection" aria-label="Willkommensbanner">
             <div class="mainBanner">
                 <img src="./image/img/buffetcrush-christmas-wallpaper-2009590_640.jpg" alt="Mama'Afrika Speisen">
@@ -104,7 +77,7 @@ function renderBannerSection() {
 }
 
 function renderInfoSection() {
-    return `
+  return `
         <section class="mainTitleSection" aria-label="Informationen">
             <div class="mainSectionHeader">
                 <h1>Mama'Afrika Menü</h1>
@@ -120,7 +93,7 @@ function renderInfoSection() {
 }
 
 function renderMenuSection() {
-    return `
+  return `
         <section class="mainContentSection" aria-label="Menü und Warenkorb">
             <aside id="basketWrapper" class="basket-sidebar" aria-label="Warenkorb">
                 <div id="basketContent" class="basket-items">
@@ -165,9 +138,8 @@ function renderMenuSection() {
     `;
 }
 
-
 function renderPromoSection() {
-    return `
+  return `
         <section class="footerSection" aria-label="Werbebanner">
             <div class="footerSectionBanner">
                 <img src="./image/img/luk1004-food-3083223_640.jpg" alt="Spezialgerichte von Mama'Afrika">
@@ -176,9 +148,8 @@ function renderPromoSection() {
     `;
 }
 
-
 function renderFooter() {
-    return `
+  return `
         <footer>
             <div class="footerContent">
                 <div class="footer-section">
