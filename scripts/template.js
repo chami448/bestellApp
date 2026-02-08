@@ -32,7 +32,8 @@ function createMenuItem(item, category, index, isFavorite) {
 function renderPage() {
   const app = document.getElementById("app");
   if (!app) return;
-  app.innerHTML = renderHeader() + renderMain() + renderFooter();
+    app.innerHTML =
+        renderHeader() + renderMain() + renderFooter() + renderDialogs();
 }
 
 function renderHeader() {
@@ -167,5 +168,29 @@ function renderFooter() {
                 </div>
             </div>
         </footer>
+    `;
+}
+
+function renderDialogs() {
+  return `
+        <dialog id="confirmDialog" class="order-dialog">
+            <div class="dialog-content">
+                <h2>Bestellung abschliessen?</h2>
+                <p>Bist du sicher, dass du fertig bist und bestellen moechtest?</p>
+                <div class="dialog-actions">
+                    <button id="confirmYesBtn" class="dialog-btn">ja, ich will!</button>
+                    <button id="confirmNoBtn" class="dialog-btn secondary">nein, not sure!</button>
+                </div>
+            </div>
+        </dialog>
+        <dialog id="orderDialog" class="order-dialog">
+            <div class="dialog-content">
+                <h2 id="dialogTitle">Probe-Bestellung</h2>
+                <p id="dialogMessage"></p>
+                <div class="dialog-actions">
+                    <button id="dialogCloseBtn" class="dialog-btn">OK</button>
+                </div>
+            </div>
+        </dialog>
     `;
 }

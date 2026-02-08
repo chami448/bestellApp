@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupBasketActions();
   setupDeliveryOptions();
   updateTotals();
+  setupOrderDialog();
 });
 
 function buildFavoriteSet() {
@@ -321,4 +322,68 @@ function updateCartBadge() {
 
   const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   badge.textContent = String(count);
+}
+
+function setupOrderDialog() {
+  const orderButton = document.getElementById("orderButton");
+  if (!orderButton) return;
+
+  orderButton.addEventListener("click", () => {
+    openConfirmDialog();
+  });
+}
+
+function openConfirmDialog() {
+  const dialog = document.getElementById("confirmDialog");
+  const yesBtn = document.getElementById("confirmYesBtn");
+  const noBtn = document.getElementById("confirmNoBtn");
+
+  if (!dialog || !yesBtn || !noBtn) return;
+
+  if (typeof dialog.showModal === "function") {
+    dialog.showModal();
+  } else {
+    dialog.setAttribute("open", "true");
+  }
+
+  yesBtn.onclick = () => {
+    dialog.close();
+    clearCart();
+    openOrderDialog(deliveryMode);
+  };
+
+  noBtn.onclick = () => {
+    dialog.close();
+  };
+}
+
+function openOrderDialog(mode) {
+  const dialog = document.getElementById("orderDialog");
+  const title = document.getElementById("dialogTitle");
+  const message = document.getElementById("dialogMessage");
+  const closeBtn = document.getElementById("dialogCloseBtn");
+
+  if (!dialog || !title || !message || !closeBtn) return;
+
+  if (mode === "delivery") {
+    title.textContent = "Probe-Bestellung bestaetigt";
+    message.textContent = "Ihre Probe-Bestellung kommt in ca. 45 Minuten.";
+  } else {
+    title.textContent = "Probe-Bestellung bestaetigt";
+    message.textContent = "Sie koennen Ihre Probe-Bestellung in ca. 15 Minuten abholen.";
+  }
+
+  if (typeof dialog.showModal === "function") {
+    dialog.showModal();
+  } else {
+    dialog.setAttribute("open", "true");
+  }
+
+  closeBtn.onclick = () => dialog.close();
+}
+
+function clearCart() {
+  cartItems = [];
+  updateCartUI();
+  updateTotals();
 }
