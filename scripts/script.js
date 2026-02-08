@@ -70,29 +70,31 @@ function setActiveTab(category) {
 function setupMenuTabs() {
   const tabs = document.querySelectorAll(".menuTab");
 
-  tabs.forEach((tab) => {
-    if (!tab.hasAttribute("tabindex")) {
-      tab.setAttribute("tabindex", "0");
+  tabs.forEach(makeTabFocusable);
+  tabs.forEach(bindTabEvents);
+}
+
+function makeTabFocusable(tab) {
+  if (!tab.hasAttribute("tabindex")) {
+    tab.setAttribute("tabindex", "0");
+  }
+}
+
+function bindTabEvents(tab) {
+  tab.addEventListener("click", () => activateTab(tab));
+  tab.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      activateTab(tab);
     }
   });
+}
 
-  function activateTab(tab) {
-    const category = tab.dataset.category;
-    setActiveTab(category);
-    renderMenuWithFavoriteStatus(category);
-    setupMenuActions();
-  }
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => activateTab(tab));
-
-    tab.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        activateTab(tab);
-      }
-    });
-  });
+function activateTab(tab) {
+  const category = tab.dataset.category;
+  setActiveTab(category);
+  renderMenuWithFavoriteStatus(category);
+  setupMenuActions();
 }
 
 function setupMenuActions() {
@@ -101,24 +103,25 @@ function setupMenuActions() {
   if (menuList.dataset.bound === "true") return;
   menuList.dataset.bound = "true";
 
-  menuList.addEventListener("click", (e) => {
-    if (e.target.closest(".addBtn")) {
-      const menuItem = e.target.closest(".menuItem");
-      const itemName = menuItem.dataset.itemName;
-      const category = menuItem.dataset.category;
+  menuList.addEventListener("click", handleMenuListClick);
+}
 
-      handleAddToBasket(itemName, category);
-    }
+function handleMenuListClick(e) {
+  const menuItem = e.target.closest(".menuItem");
+  if (!menuItem) return;
 
-    if (e.target.closest(".likeBtn")) {
-      const menuItem = e.target.closest(".menuItem");
-      const itemName = menuItem.dataset.itemName;
-      const category = menuItem.dataset.category;
-      const itemIndex = menuItem.dataset.itemIndex;
+  if (e.target.closest(".addBtn")) {
+    handleAddToBasket(menuItem.dataset.itemName, menuItem.dataset.category);
+  }
 
-      handleToggleFavorite(menuItem, itemName, category, itemIndex);
-    }
-  });
+  if (e.target.closest(".likeBtn")) {
+    handleToggleFavorite(
+      menuItem,
+      menuItem.dataset.itemName,
+      menuItem.dataset.category,
+      menuItem.dataset.itemIndex,
+    );
+  }
 }
 
 function handleAddToBasket(itemName, category) {
@@ -130,14 +133,21 @@ function handleAddToBasket(itemName, category) {
 }
 
 function handleToggleFavorite(menuItem, itemName, category, itemIndex) {
-  const items = categoryMap[category];
-  const item = items[itemIndex];
+  const item = getItemByCategoryIndex(category, itemIndex);
+  if (!item) return;
 
   toggleFavorite(itemName, item, category);
+  updateLikeUI(menuItem, itemName);
+}
 
+function getItemByCategoryIndex(category, itemIndex) {
+  const items = categoryMap[category] || [];
+  return items[itemIndex];
+}
+
+function updateLikeUI(menuItem, itemName) {
   const likeBtn = menuItem.querySelector(".likeBtn");
   const likedIcon = menuItem.querySelector(".likedIcon");
-
   const isFavorite = favoriteDishes.some((fav) => fav.name === itemName);
 
   if (isFavorite) {
@@ -186,18 +196,20 @@ function setupBasketActions() {
   if (basketContent.dataset.bound === "true") return;
   basketContent.dataset.bound = "true";
 
-  basketContent.addEventListener("click", (e) => {
-    const btn = e.target.closest("button");
-    if (!btn) return;
+  basketContent.addEventListener("click", handleBasketClick);
+}
 
-    const action = btn.dataset.action;
-    const itemName = btn.dataset.itemName;
-    if (!action || !itemName) return;
+function handleBasketClick(e) {
+  const btn = e.target.closest("button");
+  if (!btn) return;
 
-    if (action === "increase") changeQuantity(itemName, 1);
-    if (action === "decrease") changeQuantity(itemName, -1);
-    if (action === "remove") removeFromCart(itemName);
-  });
+  const action = btn.dataset.action;
+  const itemName = btn.dataset.itemName;
+  if (!action || !itemName) return;
+
+  if (action === "increase") changeQuantity(itemName, 1);
+  if (action === "decrease") changeQuantity(itemName, -1);
+  if (action === "remove") removeFromCart(itemName);
 }
 
 function setupDeliveryOptions() {
@@ -263,15 +275,22 @@ function updateCartUI() {
   if (!basketContent) return;
 
   if (cartItems.length === 0) {
-    basketContent.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
-    updateCartBadge();
+    renderEmptyCart(basketContent);
     return;
   }
 
-  basketContent.innerHTML = cartItems
-    .map((item) => {
-      const lineTotal = (item.price * item.quantity).toFixed(2);
-      return `
+  basketContent.innerHTML = cartItems.map(buildCartItemHtml).join("");
+  updateCartBadge();
+}
+
+function renderEmptyCart(container) {
+  container.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
+  updateCartBadge();
+}
+
+function buildCartItemHtml(item) {
+  const lineTotal = (item.price * item.quantity).toFixed(2);
+  return `
             <div class="basket-item" data-item-name="${item.name}">
                 <div class="basket-item-info">
                     <span class="basket-item-name">${item.name}</span>
@@ -285,10 +304,6 @@ function updateCartUI() {
                 </div>
             </div>
         `;
-    })
-    .join("");
-
-  updateCartBadge();
 }
 
 function calculateSubtotal() {
@@ -340,11 +355,7 @@ function openConfirmDialog() {
 
   if (!dialog || !yesBtn || !noBtn) return;
 
-  if (typeof dialog.showModal === "function") {
-    dialog.showModal();
-  } else {
-    dialog.setAttribute("open", "true");
-  }
+  showDialog(dialog);
 
   yesBtn.onclick = () => {
     dialog.close();
@@ -365,21 +376,27 @@ function openOrderDialog(mode) {
 
   if (!dialog || !title || !message || !closeBtn) return;
 
+  setOrderDialogContent(mode, title, message);
+  showDialog(dialog);
+
+  closeBtn.onclick = () => dialog.close();
+}
+
+function setOrderDialogContent(mode, title, message) {
+  title.textContent = "Probe-Bestellung bestaetigt";
   if (mode === "delivery") {
-    title.textContent = "Probe-Bestellung bestaetigt";
     message.textContent = "Ihre Probe-Bestellung kommt in ca. 45 Minuten.";
   } else {
-    title.textContent = "Probe-Bestellung bestaetigt";
     message.textContent = "Sie koennen Ihre Probe-Bestellung in ca. 15 Minuten abholen.";
   }
+}
 
+function showDialog(dialog) {
   if (typeof dialog.showModal === "function") {
     dialog.showModal();
   } else {
     dialog.setAttribute("open", "true");
   }
-
-  closeBtn.onclick = () => dialog.close();
 }
 
 function clearCart() {
