@@ -1,6 +1,7 @@
 
 
 #basketWrapper {
+	display: block;
 	width: 300px;
 	flex: 0 0 300px;
 	background: #fff;
@@ -9,18 +10,12 @@
 	overflow: hidden;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 	transition: width 0.25s ease, flex-basis 0.25s ease, transform 0.25s ease;
+	position: sticky;
+	align-self: flex-start;
 }
 
 #basketWrapper.is-closed {
-	width: 0;
-	flex: 0 0 0;
-	border: none;
-	box-shadow: none;
-}
-
-#basketWrapper.is-closed * {
-	opacity: 0;
-	pointer-events: none;
+	display: none;
 }
 
 #basketContent {
@@ -141,5 +136,6 @@
 	#basketWrapper {
 		width: 100%;
 		flex: 1 1 auto;
+		position: static;
 	}
 }

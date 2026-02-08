@@ -18,11 +18,18 @@ body {
 	display: flex;
 	gap: 1.5rem;
 	align-items: flex-start;
+	position: relative;
 }
 
 #mainContentWrapper {
-	flex: 1;
+	flex: 1 1 auto;
+	max-width: 100%;
 	min-width: 0;
+}
+
+#basketWrapper:not(.is-closed) + #mainContentWrapper {
+	flex: 1 1 70%;
+	max-width: 70%;
 }
 
 .headSection,
@@ -100,5 +107,9 @@ body {
 @media (max-width: 900px) {
 	.mainContentSection {
 		flex-direction: column;
+	}
+
+	#mainContentWrapper {
+		max-width: 100%;
 	}
 }
