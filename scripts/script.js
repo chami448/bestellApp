@@ -1,280 +1,276 @@
-
-
 function loadFromLocalStorage() {
-    const stored = localStorage.getItem('favoriteDishes');
-    if (stored) {
-        try {
-            const loaded = JSON.parse(stored);
-            favoriteDishes.length = 0;
-            favoriteDishes.push(...loaded);
-        } catch (e) {
-            console.error('Fehler beim Laden von LocalStorage:', e);
-        }
+  const stored = localStorage.getItem("favoriteDishes");
+  if (stored) {
+    try {
+      const loaded = JSON.parse(stored);
+      favoriteDishes.length = 0;
+      favoriteDishes.push(...loaded);
+    } catch (e) {
+      console.error("Fehler beim Laden von LocalStorage:", e);
     }
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
-    renderPage();
+document.addEventListener("DOMContentLoaded", () => {
+  loadFromLocalStorage();
+  renderPage();
 
-    const startCategory = getInitialCategory();
-    renderMenuWithFavoriteStatus(startCategory);
+  const startCategory = getInitialCategory();
+  renderMenuWithFavoriteStatus(startCategory);
 
-    setActiveTab(startCategory);
-    setupMenuTabs();
-    setupMenuActions();
-    setupBasketToggle();
-    setupBasketActions();
-    setupDeliveryOptions();
-    updateTotals();
+  setActiveTab(startCategory);
+  setupMenuTabs();
+  setupMenuActions();
+  setupBasketToggle();
+  setupBasketActions();
+  setupDeliveryOptions();
+  updateTotals();
 });
 
 function buildFavoriteSet() {
-    return new Set(favoriteDishes.map(f => f.name));
+  return new Set(favoriteDishes.map((f) => f.name));
 }
 
 function renderMenuWithFavoriteStatus(category) {
-    const items = categoryMap[category] || [];
-    const favoriteSet = buildFavoriteSet();
+  const items = categoryMap[category] || [];
+  const favoriteSet = buildFavoriteSet();
 
-    const menuList = document.querySelector('.menuList');
-    menuList.innerHTML = '';
+  const menuList = document.querySelector(".menuList");
+  menuList.innerHTML = "";
 
-    items.forEach((item, index) => {
-        const isFavorite = favoriteSet.has(item.name);
-        const menuItem = createMenuItem(item, category, index, isFavorite);
-        menuList.appendChild(menuItem);
-    });
+  items.forEach((item, index) => {
+    const isFavorite = favoriteSet.has(item.name);
+    const menuItem = createMenuItem(item, category, index, isFavorite);
+    menuList.appendChild(menuItem);
+  });
 }
 
 function getInitialCategory() {
-    const stored = localStorage.getItem('favoriteDishes');
-    if (!stored) return 'dishes';
-    
-    try {
-        const favorites = JSON.parse(stored);
-        return favorites.length > 0 ? 'favorites' : 'dishes';
-    } catch (e) {
-        return 'dishes';
-    }
+  const stored = localStorage.getItem("favoriteDishes");
+  if (!stored) return "dishes";
+
+  try {
+    const favorites = JSON.parse(stored);
+    return favorites.length > 0 ? "favorites" : "dishes";
+  } catch (e) {
+    return "dishes";
+  }
 }
 
 function setActiveTab(category) {
-    const tabs = document.querySelectorAll('.menuTab');
-    tabs.forEach(t => t.classList.remove('active'));
-    const active = document.querySelector(`.menuTab[data-category="${category}"]`);
-    if (active) active.classList.add('active');
+  const tabs = document.querySelectorAll(".menuTab");
+  tabs.forEach((t) => t.classList.remove("active"));
+  const active = document.querySelector(
+    `.menuTab[data-category="${category}"]`,
+  );
+  if (active) active.classList.add("active");
 }
 
 function setupMenuTabs() {
-    const tabs = document.querySelectorAll('.menuTab');
+  const tabs = document.querySelectorAll(".menuTab");
 
-    tabs.forEach(tab => {
-        if (!tab.hasAttribute('tabindex')) {
-            tab.setAttribute('tabindex', '0');
-        }
-    });
-
-    function activateTab(tab) {
-        const category = tab.dataset.category;
-        setActiveTab(category);
-        renderMenuWithFavoriteStatus(category);
-        setupMenuActions();
+  tabs.forEach((tab) => {
+    if (!tab.hasAttribute("tabindex")) {
+      tab.setAttribute("tabindex", "0");
     }
+  });
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => activateTab(tab));
+  function activateTab(tab) {
+    const category = tab.dataset.category;
+    setActiveTab(category);
+    renderMenuWithFavoriteStatus(category);
+    setupMenuActions();
+  }
 
-        tab.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                activateTab(tab);
-            }
-        });
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => activateTab(tab));
+
+    tab.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        activateTab(tab);
+      }
     });
+  });
 }
-
-
-
-
 
 function setupMenuActions() {
-    const menuList = document.querySelector('.menuList');
+  const menuList = document.querySelector(".menuList");
 
-    if (menuList.dataset.bound === "true") return;
-    menuList.dataset.bound = "true";
-    
-    menuList.addEventListener('click', (e) => {
-        if (e.target.closest('.addBtn')) {
-            const menuItem = e.target.closest('.menuItem');
-            const itemName = menuItem.dataset.itemName;
-            const category = menuItem.dataset.category;
-            
-            handleAddToBasket(itemName, category);
-        }
-        
-        if (e.target.closest('.likeBtn')) {
-            const menuItem = e.target.closest('.menuItem');
-            const itemName = menuItem.dataset.itemName;
-            const category = menuItem.dataset.category;
-            const itemIndex = menuItem.dataset.itemIndex;
-            
-            handleToggleFavorite(menuItem, itemName, category, itemIndex);
-        }
-    });
+  if (menuList.dataset.bound === "true") return;
+  menuList.dataset.bound = "true";
+
+  menuList.addEventListener("click", (e) => {
+    if (e.target.closest(".addBtn")) {
+      const menuItem = e.target.closest(".menuItem");
+      const itemName = menuItem.dataset.itemName;
+      const category = menuItem.dataset.category;
+
+      handleAddToBasket(itemName, category);
+    }
+
+    if (e.target.closest(".likeBtn")) {
+      const menuItem = e.target.closest(".menuItem");
+      const itemName = menuItem.dataset.itemName;
+      const category = menuItem.dataset.category;
+      const itemIndex = menuItem.dataset.itemIndex;
+
+      handleToggleFavorite(menuItem, itemName, category, itemIndex);
+    }
+  });
 }
-
-
 
 function handleAddToBasket(itemName, category) {
-    const items = categoryMap[category] || [];
-    const item = items.find(i => i.name === itemName);
-    if (!item) return;
+  const items = categoryMap[category] || [];
+  const item = items.find((i) => i.name === itemName);
+  if (!item) return;
 
-    addToCart(item, category);
+  addToCart(item, category);
 }
 
-
 function handleToggleFavorite(menuItem, itemName, category, itemIndex) {
-    const items = categoryMap[category];
-    const item = items[itemIndex];
-    
-    toggleFavorite(itemName, item, category);
-    
-    const likeBtn = menuItem.querySelector('.likeBtn');
-    const likedIcon = menuItem.querySelector('.likedIcon');
-    
-    const isFavorite = favoriteDishes.some(fav => fav.name === itemName);
-    
-    if (isFavorite) {
-        likeBtn.classList.add('liked');
-        likedIcon.classList.add('active');
-        console.log(`❤️ ${itemName} zu Favoriten hinzugefügt`);
-    } else {
-        likeBtn.classList.remove('liked');
-        likedIcon.classList.remove('active');
-        console.log(`🤍 ${itemName} aus Favoriten entfernt`);
-    }
+  const items = categoryMap[category];
+  const item = items[itemIndex];
+
+  toggleFavorite(itemName, item, category);
+
+  const likeBtn = menuItem.querySelector(".likeBtn");
+  const likedIcon = menuItem.querySelector(".likedIcon");
+
+  const isFavorite = favoriteDishes.some((fav) => fav.name === itemName);
+
+  if (isFavorite) {
+    likeBtn.classList.add("liked");
+    likedIcon.classList.add("active");
+    console.log(`❤️ ${itemName} zu Favoriten hinzugefügt`);
+  } else {
+    likeBtn.classList.remove("liked");
+    likedIcon.classList.remove("active");
+    console.log(`🤍 ${itemName} aus Favoriten entfernt`);
+  }
 }
 
 function toggleFavorite(itemName, item, category) {
-    const existingIndex = favoriteDishes.findIndex(fav => fav.name === itemName);
+  const existingIndex = favoriteDishes.findIndex(
+    (fav) => fav.name === itemName,
+  );
 
-    if (existingIndex > -1) {
-        favoriteDishes.splice(existingIndex, 1);
-    } else {
-        const favoriteItem = { ...item, category };
-        favoriteDishes.push(favoriteItem);
-    }
+  if (existingIndex > -1) {
+    favoriteDishes.splice(existingIndex, 1);
+  } else {
+    const favoriteItem = { ...item, category };
+    favoriteDishes.push(favoriteItem);
+  }
 
-    localStorage.setItem('favoriteDishes', JSON.stringify(favoriteDishes));
+  localStorage.setItem("favoriteDishes", JSON.stringify(favoriteDishes));
 }
 
 function setupBasketToggle() {
-    const cartButton = document.getElementById("cartIcon");
-    const basket = document.getElementById("basketWrapper");
+  const cartButton = document.getElementById("cartIcon");
+  const basket = document.getElementById("basketWrapper");
 
-    if (!cartButton || !basket) return;
+  if (!cartButton || !basket) return;
 
-    basket.classList.add("is-closed");
+  basket.classList.add("is-closed");
 
-    cartButton.addEventListener("click", () => {
-        basket.classList.toggle("is-closed");
-    });
+  cartButton.addEventListener("click", () => {
+    basket.classList.toggle("is-closed");
+  });
 }
 
 function setupBasketActions() {
-    const basketContent = document.getElementById("basketContent");
-    if (!basketContent) return;
+  const basketContent = document.getElementById("basketContent");
+  if (!basketContent) return;
 
-    if (basketContent.dataset.bound === "true") return;
-    basketContent.dataset.bound = "true";
+  if (basketContent.dataset.bound === "true") return;
+  basketContent.dataset.bound = "true";
 
-    basketContent.addEventListener("click", (e) => {
-        const btn = e.target.closest("button");
-        if (!btn) return;
+  basketContent.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
 
-        const action = btn.dataset.action;
-        const itemName = btn.dataset.itemName;
-        if (!action || !itemName) return;
+    const action = btn.dataset.action;
+    const itemName = btn.dataset.itemName;
+    if (!action || !itemName) return;
 
-        if (action === "increase") changeQuantity(itemName, 1);
-        if (action === "decrease") changeQuantity(itemName, -1);
-        if (action === "remove") removeFromCart(itemName);
-    });
+    if (action === "increase") changeQuantity(itemName, 1);
+    if (action === "decrease") changeQuantity(itemName, -1);
+    if (action === "remove") removeFromCart(itemName);
+  });
 }
 
 function setupDeliveryOptions() {
-    const btnDelivery = document.getElementById("btnDelivery");
-    const btnPickup = document.getElementById("btnPickup");
+  const btnDelivery = document.getElementById("btnDelivery");
+  const btnPickup = document.getElementById("btnPickup");
 
-    if (!btnDelivery || !btnPickup) return;
+  if (!btnDelivery || !btnPickup) return;
 
-    btnDelivery.addEventListener("click", () => {
-        deliveryMode = "delivery";
-        btnDelivery.classList.add("active");
-        btnPickup.classList.remove("active");
-        updateTotals();
-    });
+  btnDelivery.addEventListener("click", () => {
+    deliveryMode = "delivery";
+    btnDelivery.classList.add("active");
+    btnPickup.classList.remove("active");
+    updateTotals();
+  });
 
-    btnPickup.addEventListener("click", () => {
-        deliveryMode = "pickup";
-        btnPickup.classList.add("active");
-        btnDelivery.classList.remove("active");
-        updateTotals();
-    });
+  btnPickup.addEventListener("click", () => {
+    deliveryMode = "pickup";
+    btnPickup.classList.add("active");
+    btnDelivery.classList.remove("active");
+    updateTotals();
+  });
 }
 
 function addToCart(item, category) {
-    const existing = cartItems.find(ci => ci.name === item.name);
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cartItems.push({
-            name: item.name,
-            price: item.price,
-            category,
-            quantity: 1
-        });
-    }
+  const existing = cartItems.find((ci) => ci.name === item.name);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cartItems.push({
+      name: item.name,
+      price: item.price,
+      category,
+      quantity: 1,
+    });
+  }
 
-    updateCartUI();
-    updateTotals();
+  updateCartUI();
+  updateTotals();
 }
 
 function changeQuantity(itemName, delta) {
-    const item = cartItems.find(ci => ci.name === itemName);
-    if (!item) return;
+  const item = cartItems.find((ci) => ci.name === itemName);
+  if (!item) return;
 
-    if (delta < 0 && item.quantity === 1) {
-        alert("Menge kann nicht weiter reduziert werden.");
-        return;
-    }
+  if (delta < 0 && item.quantity === 1) {
+    alert("Menge kann nicht weiter reduziert werden.");
+    return;
+  }
 
-    item.quantity += delta;
-    updateCartUI();
-    updateTotals();
+  item.quantity += delta;
+  updateCartUI();
+  updateTotals();
 }
 
 function removeFromCart(itemName) {
-    cartItems = cartItems.filter(ci => ci.name !== itemName);
-    updateCartUI();
-    updateTotals();
+  cartItems = cartItems.filter((ci) => ci.name !== itemName);
+  updateCartUI();
+  updateTotals();
 }
 
 function updateCartUI() {
-    const basketContent = document.getElementById("basketContent");
-    if (!basketContent) return;
+  const basketContent = document.getElementById("basketContent");
+  if (!basketContent) return;
 
-    if (cartItems.length === 0) {
-        basketContent.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
-        updateCartBadge();
-        return;
-    }
+  if (cartItems.length === 0) {
+    basketContent.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
+    updateCartBadge();
+    return;
+  }
 
-    basketContent.innerHTML = cartItems.map(item => {
-        const lineTotal = (item.price * item.quantity).toFixed(2);
-        return `
+  basketContent.innerHTML = cartItems
+    .map((item) => {
+      const lineTotal = (item.price * item.quantity).toFixed(2);
+      return `
             <div class="basket-item" data-item-name="${item.name}">
                 <div class="basket-item-info">
                     <span class="basket-item-name">${item.name}</span>
@@ -288,40 +284,41 @@ function updateCartUI() {
                 </div>
             </div>
         `;
-    }).join("");
+    })
+    .join("");
 
-    updateCartBadge();
+  updateCartBadge();
 }
 
 function calculateSubtotal() {
-    return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 }
 
 function calculateDeliveryCost() {
-    if (deliveryMode === "pickup") return 0;
-    return deliveryCost || 0;
+  if (deliveryMode === "pickup") return 0;
+  return deliveryCost || 0;
 }
 
 function updateTotals() {
-    const subtotal = calculateSubtotal();
-    const delivery = calculateDeliveryCost();
-    const total = subtotal + delivery;
+  const subtotal = calculateSubtotal();
+  const delivery = calculateDeliveryCost();
+  const total = subtotal + delivery;
 
-    const subtotalEl = document.getElementById("subtotalPrice");
-    const deliveryEl = document.getElementById("deliveryPrice");
-    const totalEl = document.getElementById("totalPrice");
+  const subtotalEl = document.getElementById("subtotalPrice");
+  const deliveryEl = document.getElementById("deliveryPrice");
+  const totalEl = document.getElementById("totalPrice");
 
-    if (subtotalEl) subtotalEl.textContent = `${subtotal.toFixed(2)} €`;
-    if (deliveryEl) deliveryEl.textContent = `${delivery.toFixed(2)} €`;
-    if (totalEl) totalEl.textContent = `${total.toFixed(2)} €`;
+  if (subtotalEl) subtotalEl.textContent = `${subtotal.toFixed(2)} €`;
+  if (deliveryEl) deliveryEl.textContent = `${delivery.toFixed(2)} €`;
+  if (totalEl) totalEl.textContent = `${total.toFixed(2)} €`;
 
-    updateCartBadge();
+  updateCartBadge();
 }
 
 function updateCartBadge() {
-    const badge = document.getElementById("cartBadge");
-    if (!badge) return;
+  const badge = document.getElementById("cartBadge");
+  if (!badge) return;
 
-    const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-    badge.textContent = String(count);
+  const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  badge.textContent = String(count);
 }
