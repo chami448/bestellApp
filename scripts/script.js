@@ -52,7 +52,7 @@ function getInitialCategory() {
 
   try {
     const favorites = JSON.parse(stored);
-    return favorites.length > 0 ? "favorites" : "dishes";
+    return favorites.length > 0 ? "favorites" : "dishes";//Genauerer Untersuchen
   } catch (e) {
     return "dishes";
   }
@@ -124,7 +124,7 @@ function handleMenuListClick(e) {
   }
 }
 
-function handleAddToBasket(itemName, category) {
+function handleAddToBasket(itemName, category) {//Genauer Untersuchen , stop bei der korrektur
   const items = categoryMap[category] || [];
   const item = items.find((i) => i.name === itemName);
   if (!item) return;
