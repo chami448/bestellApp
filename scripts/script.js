@@ -32,8 +32,22 @@ function buildFavoriteSet() {
   return new Set(favoriteDishes.map((f) => f.name));
 }
 
+function getCategoryItems(category) {
+  switch (category) {
+    case "dishes":
+    case "supplements":
+    case "alcoholicDrinks":
+    case "drinks":
+    case "mealOfTheDay":
+    case "favorites":
+      return categoryMap[category] || [];
+    default:
+      return [];
+  }
+}
+
 function renderMenuWithFavoriteStatus(category) {
-  const items = categoryMap[category] || [];
+  const items = getCategoryItems(category);
   const favoriteSet = buildFavoriteSet();
 
   const menuList = document.querySelector(".menuList");
@@ -207,9 +221,19 @@ function handleBasketClick(e) {
   const itemName = btn.dataset.itemName;
   if (!action || !itemName) return;
 
-  if (action === "increase") changeQuantity(itemName, 1);
-  if (action === "decrease") changeQuantity(itemName, -1);
-  if (action === "remove") removeFromCart(itemName);
+  switch (action) {
+    case "increase":
+      changeQuantity(itemName, 1);
+      break;
+    case "decrease":
+      changeQuantity(itemName, -1);
+      break;
+    case "remove":
+      removeFromCart(itemName);
+      break;
+    default:
+      break;
+  }
 }
 
 function setupDeliveryOptions() {
@@ -274,13 +298,15 @@ function updateCartUI() {
   const basketContent = document.getElementById("basketContent");
   if (!basketContent) return;
 
-  if (cartItems.length === 0) {
-    renderEmptyCart(basketContent);
-    return;
+  switch (cartItems.length) {
+    case 0:
+      renderEmptyCart(basketContent);
+      break;
+    default:
+      basketContent.innerHTML = cartItems.map(buildCartItemHtml).join("");
+      updateCartBadge();
+      break;
   }
-
-  basketContent.innerHTML = cartItems.map(buildCartItemHtml).join("");
-  updateCartBadge();
 }
 
 function renderEmptyCart(container) {
@@ -344,7 +370,7 @@ function setupOrderDialog() {
   if (!orderButton) return;
 
   orderButton.addEventListener("click", () => {
-    openConfirmDialog();
+    openDialogByType("confirm");
   });
 }
 
@@ -360,7 +386,7 @@ function openConfirmDialog() {
   yesBtn.onclick = () => {
     dialog.close();
     clearCart();
-    openOrderDialog(deliveryMode);
+    openDialogByType("order", deliveryMode);
   };
 
   noBtn.onclick = () => {
@@ -384,10 +410,30 @@ function openOrderDialog(mode) {
 
 function setOrderDialogContent(mode, title, message) {
   title.textContent = "Probe-Bestellung bestaetigt";
-  if (mode === "delivery") {
-    message.textContent = "Ihre Probe-Bestellung kommt in ca. 45 Minuten.";
-  } else {
-    message.textContent = "Sie koennen Ihre Probe-Bestellung in ca. 15 Minuten abholen.";
+  switch (mode) {
+    case "delivery":
+      message.textContent = "Ihre Probe-Bestellung kommt in ca. 45 Minuten.";
+      break;
+    case "pickup":
+      message.textContent =
+        "Sie koennen Ihre Probe-Bestellung in ca. 15 Minuten abholen.";
+      break;
+    default:
+      message.textContent = "Bitte Lieferart waehlen.";
+      break;
+  }
+}
+
+function openDialogByType(type, mode) {
+  switch (type) {
+    case "confirm":
+      openConfirmDialog();
+      break;
+    case "order":
+      openOrderDialog(mode);
+      break;
+    default:
+      break;
   }
 }
 
