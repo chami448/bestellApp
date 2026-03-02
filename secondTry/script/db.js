@@ -123,3 +123,13 @@ let deliveryCost = 2.99;
 
 let basketItems = [];
 let deliveryMode = "delivery";
+
+const iconMap = {
+    addIcon: "./image/icon/add_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    likeIcon: "./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    likedIcon: "./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    removeIcon: "./image/icon/remove_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    menuIcon:"./image/icon/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    menuActiveIcon: "./image/icon/menu_open_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    trashIcon: "./image/icon/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+}
