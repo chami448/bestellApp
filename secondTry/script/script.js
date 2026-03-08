@@ -15,3 +15,22 @@ document.addEventListener("DOMContentLoaded", ()=>{
     loadFromLocalStorage();
     renderPage();
 });
+
+
+function buildFavoriteSet() {
+  return new Set(favoriteDishes.map((f) => f.name));
+}
+
+function getCategoryItems(category) {
+  switch (category) {
+    case "dishes":
+    case "supplements":
+    case "alcoholicDrinks":
+    case "drinks":
+    case "mealOfTheDay":
+    case "favorites":
+      return categoryMap[category] || [];
+    default:
+      return [];
+  }
+}

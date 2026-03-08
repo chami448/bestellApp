@@ -121,6 +121,20 @@ const categoryMap = {
 
 let deliveryCost = 2.99;
 
+let deposit = 0.25;
+
+let tip = [
+  { name: "5%",
+    value: 0.05,
+  },
+  { name: "10%",
+    value: 0.1,
+  },
+  { name: "15%",
+    value: 0.15,
+  },
+]
+
 let basketItems = [];
 let deliveryMode = "delivery";
 
