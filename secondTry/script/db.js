@@ -132,7 +132,6 @@ const categoryMap = {
 
 let deliveryCost = 2.99;
 
-let deposit = 0.25;
 
 let tip = [
   { name: "5%",
