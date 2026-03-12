@@ -9,18 +9,21 @@ function loadFromLocalStorage() {
       console.error("Fehler beim Laden von LocalStorage:", e);
     }
   }
-}
+};
 
+
+//bundle of functions
 document.addEventListener("DOMContentLoaded", ()=>{
     loadFromLocalStorage();
     renderPage();
 });
 
-
+//connect function and localStorage
 function buildFavoriteSet() {
   return new Set(favoriteDishes.map((f) => f.name));
-}
+};
 
+//helper function to get the right category
 function getCategoryItems(category) {
   switch (category) {
     case "dishes":
@@ -33,4 +36,19 @@ function getCategoryItems(category) {
     default:
       return [];
   }
+};
+
+//fundamental function to render the menu with the right category and favorite status
+function renderMenuWithFavoriteStatus(category) {
+  const items = getCategoryItems(category);
+  const favoriteSet = buildFavoriteSet();
+
+  const menuList = document.querySelector(".menuList");
+  menuList.innerHTML = "";
+
+  items.forEach((item, index) => {
+    const isFavorite = favoriteSet.has(item.name);
+    const menuItem = createMenuItem(item, category, index, isFavorite);
+    menuList.appendChild(menuItem);
+  });
 }

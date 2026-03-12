@@ -132,7 +132,7 @@ function renderMenuSection() {
                     <span class="menuTab" data-category="favorites">❤️ Favoriten</span>
                 </nav>
                 <div class="menuList" aria-label="Menü-Items">
-                    <!-- Dynamisch gefüllt von renderMenu() -->
+                    <!-- Dynamisch gefüllt von renderMenuItem() -->
                 </div>
             </div>
         </section>

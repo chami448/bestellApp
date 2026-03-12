@@ -66,7 +66,7 @@ function getInitialCategory() {
 
   try {
     const favorites = JSON.parse(stored);
-    return favorites.length > 0 ? "favorites" : "dishes";//Genauerer Untersuchen
+    return favorites.length > 0 ? "favorites" : "dishes";
   } catch (e) {
     return "dishes";
   }
