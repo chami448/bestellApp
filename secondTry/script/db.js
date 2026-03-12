@@ -55,30 +55,37 @@ let myDrinks = [
   {
     name: "Coca-Cola",
     price: 3.5,
+    deposit: 0.25,
   },
   {
     name: "Fanta",
     price: 3.5,
+    deposit: 0.25,
   },
   {
     name: "Sprite",
     price: 3.5,
+    deposit: 0.25,
   },
   {
     name: "Water",
     price: 2.0,
+    deposit: 0.25,
   },
   {
     name: "Orange Juice",
     price: 4.0,
+    deposit: 0.25,
   },
   {
     name: "Apple Juice",
     price: 4.0,
+    deposit: 0.25,
   },
   {
     name: "Mango Juice",
     price: 4.0,
+    deposit: 0.25,
   },
 ];
 
@@ -86,18 +93,22 @@ let myalcoholicDrinks = [
   {
     name: "Krombacher Pils",
     price: 5.0,
+    deposit: 0.25,
   },
   {
     name: "Heineken",
     price: 5.0,
+    deposit: 0.25,
   },
   {
     name: "Guinness",
     price: 6.0,
+    deposit: 0.25,
   },
   {
     name: "Red Wine",
     price: 7.0,
+    deposit: 0.25,
   },
 ];
 
