@@ -143,7 +143,11 @@ const iconMap = {
     likeIcon: "./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
     likedIcon: "./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
     removeIcon: "./image/icon/remove_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-    menuIcon:"./image/icon/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+  menuIcon: "./image/icon/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
     menuActiveIcon: "./image/icon/menu_open_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
     trashIcon: "./image/icon/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-}
+  logoImage: "./image/img/suggabearsclub-africa-9904843_640.png",
+  heroImage: "./image/img/buffetcrush-christmas-wallpaper-2009590_640.jpg",
+  bannerIcon: "./image/icon/clker-free-vector-images-place-setting-309980_640.png",
+  promoImage: "./image/img/luk1004-food-3083223_640.jpg",
+};

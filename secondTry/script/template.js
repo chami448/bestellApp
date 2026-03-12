@@ -10,13 +10,13 @@ function renderHeader() {
         <header>
             <div class="headerImage">
                 <figure>
-                    <img src="./image/img/suggabearsclub-africa-9904843_640.png" alt="Mama'Afrika Logo">
+                    <img src="${iconMap.logoImage}" alt="Mama'Afrika Logo">
                     <figcaption>Mama'Afrika</figcaption>
                 </figure>
             </div>
             <div class="headerIcon">
                 <button id="cartIcon" class="cart-btn" title="Warenkorb öffnen">
-                    <img src="./image/icon/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Warenkorb">
+                    <img src="${iconMap.menuIcon}" alt="Warenkorb">
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
             </div>
@@ -39,8 +39,8 @@ function renderBannerSection() {
   return `
         <section class="headSection" aria-label="Willkommensbanner">
             <div class="mainBanner">
-                <img src="./image/img/buffetcrush-christmas-wallpaper-2009590_640.jpg" alt="Mama'Afrika Speisen">
-                <img class="banner-icon" src="./image/icon/clker-free-vector-images-place-setting-309980_640.png" alt="">
+                <img src="${iconMap.heroImage}" alt="Mama'Afrika Speisen">
+                <img class="banner-icon" src="${iconMap.bannerIcon}" alt="">
             </div>
         </section>
     `;
@@ -112,7 +112,7 @@ function renderPromoSection() {
   return `
         <section class="footerSection" aria-label="Werbebanner">
             <div class="footerSectionBanner">
-                <img src="./image/img/luk1004-food-3083223_640.jpg" alt="Spezialgerichte von Mama'Afrika">
+                <img src="${iconMap.promoImage}" alt="Spezialgerichte von Mama'Afrika">
             </div>
         </section>
     `;
