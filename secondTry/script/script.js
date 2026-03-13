@@ -51,4 +51,18 @@ function renderMenuWithFavoriteStatus(category) {
     const menuItem = createMenuItem(item, category, index, isFavorite);
     menuList.appendChild(menuItem);
   });
-}
+};
+
+//start function to render the page with the right category
+function getInitialCategory() {
+  const stored = localStorage.getItem("favoriteDishes");
+  if (!stored) return "dishes";
+
+  try {
+    const favorites = JSON.parse(stored);
+    return favorites.length > 0 ? "favorites" : "dishes";
+  } catch (e) {
+    return "dishes";
+  }
+};
+
