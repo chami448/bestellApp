@@ -15,12 +15,12 @@ function createMenuItem(item, category, index, isFavorite) {
             
             <div class="menuItemActions">
                 <button class="addBtn" title="Zum Korb hinzufügen">
-                    <img src="./image/icon/add_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Hinzufügen">
+                    <img src="${iconMap.addIcon}" alt="Hinzufügen">
                 </button>
                 
                 <button class="likeBtn ${isFavorite ? "liked" : ""}" title="Zu Favoriten hinzufügen">
-                    <img class="likeIcon" src="./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Favorit">
-                    <img class="likedIcon ${isFavorite ? "active" : ""}" src="./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Ist Favorit">
+                    <img class="likeIcon" src="${iconMap.likeIcon}" alt="Favorit">
+                    <img class="likedIcon ${isFavorite ? "active" : ""}" src="${iconMap.likedIcon}" alt="Ist Favorit">
                 </button>
             </div>
         </div>

@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   renderMenuWithFavoriteStatus(startCategory);
   setActiveTab(startCategory);
   setupMenuTabs();
+  setupMenuActions();
 });
 
 //connect function and localStorage
@@ -104,5 +105,33 @@ function activateTab(tab) {
 
   setActiveTab(category);
   renderMenuWithFavoriteStatus(category);
+  setupMenuActions();
+};
+
+//bind menu actions 
+function setupMenuActions() {
+  const menuList = document.querySelector(".menuList");
+  if (!menuList) return;
+
+  menuList.removeEventListener("click", handleMenuListClick);
+  menuList.addEventListener("click", handleMenuListClick);
+};
+
+function handleMenuListClick(event) {
+  const menuItem = event.target.closest(".menuItem");
+  if (!menuItem) return;
+
+  if (event.target.closest(".addBtn") && typeof handleAddToBasket === "function") {
+    handleAddToBasket(menuItem.dataset.itemName, menuItem.dataset.category);
+  }
+
+  if (event.target.closest(".likeBtn") && typeof handleToggleFavorite === "function") {
+    handleToggleFavorite(
+      menuItem,
+      menuItem.dataset.itemName,
+      menuItem.dataset.category,
+      menuItem.dataset.itemIndex,
+    );
+  }
 };
 
