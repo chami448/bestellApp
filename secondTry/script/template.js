@@ -1,3 +1,34 @@
+function createMenuItem(item, category, index, isFavorite) {
+  const div = document.createElement("div");
+  div.className = "menuItem";
+  div.dataset.itemName = item.name;
+  div.dataset.category = category;
+  div.dataset.itemIndex = index;
+
+  div.innerHTML = `
+        <div class="menuItemContent">
+            <div class="menuItemHeader">
+                <h3>${item.name}</h3>
+                <span class="price">${item.price.toFixed(2)} €</span>
+            </div>
+            <p class="description">${item.description || "Keine Beschreibung vorhanden"}</p>
+            
+            <div class="menuItemActions">
+                <button class="addBtn" title="Zum Korb hinzufügen">
+                    <img src="./image/icon/add_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Hinzufügen">
+                </button>
+                
+                <button class="likeBtn ${isFavorite ? "liked" : ""}" title="Zu Favoriten hinzufügen">
+                    <img class="likeIcon" src="./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Favorit">
+                    <img class="likedIcon ${isFavorite ? "active" : ""}" src="./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" alt="Ist Favorit">
+                </button>
+            </div>
+        </div>
+    `;
+
+  return div;
+}
+
 function renderPage() {
   const app = document.getElementById("app");
   if (!app) return;
