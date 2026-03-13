@@ -16,6 +16,11 @@ function loadFromLocalStorage() {
 document.addEventListener("DOMContentLoaded", ()=>{
     loadFromLocalStorage();
     renderPage();
+
+  const startCategory = getInitialCategory();
+  renderMenuWithFavoriteStatus(startCategory);
+  setActiveTab(startCategory);
+  setupMenuTabs();
 });
 
 //connect function and localStorage
@@ -64,5 +69,40 @@ function getInitialCategory() {
   } catch (e) {
     return "dishes";
   }
+};
+
+//functions for menu tabs and active status
+
+function setActiveTab(category) {
+  const tabs = document.querySelectorAll(".menuTab");
+  tabs.forEach((tab) => tab.classList.remove("active"));
+
+  const activeTab = document.querySelector(
+    `.menuTab[data-category="${category}"]`,
+  );
+  if (activeTab) activeTab.classList.add("active");
+};
+
+function setupMenuTabs() {
+  const tabs = document.querySelectorAll(".menuTab");
+  tabs.forEach(bindTabEvents);
+};
+
+function bindTabEvents(tab) {
+  tab.addEventListener("click", () => activateTab(tab));
+  tab.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activateTab(tab);
+    }
+  });
+};
+
+function activateTab(tab) {
+  const category = tab.dataset.category;
+  if (!category) return;
+
+  setActiveTab(category);
+  renderMenuWithFavoriteStatus(category);
 };
 
