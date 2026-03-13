@@ -93,12 +93,12 @@ function renderMenuSection() {
             </aside>
             <div id="mainContentWrapper" class="menu-area">
                 <nav class="menuTitle" aria-label="Menü-Kategorien">
-                    <span class="menuTab" data-category="dishes">Hauptgerichte</span>
-                    <span class="menuTab" data-category="supplements">Beilagen</span>
-                    <span class="menuTab" data-category="alcoholicDrinks">Alkoholische Getränke</span>
-                    <span class="menuTab" data-category="drinks">Soft-Getränke</span>
-                    <span class="menuTab" data-category="mealOfTheDay">Speise des Tages</span>
-                    <span class="menuTab" data-category="favorites">❤️ Favoriten</span>
+                    <span class="menuTab" data-category="dishes" tabindex="0">Hauptgerichte</span>
+                    <span class="menuTab" data-category="supplements" tabindex="0">Beilagen</span>
+                    <span class="menuTab" data-category="alcoholicDrinks" tabindex="0">Alkoholische Getränke</span>
+                    <span class="menuTab" data-category="drinks" tabindex="0">Soft-Getränke</span>
+                    <span class="menuTab" data-category="mealOfTheDay" tabindex="0">Speise des Tages</span>
+                    <span class="menuTab" data-category="favorites" tabindex="0">❤️ Favoriten</span>
                 </nav>
                 <div class="menuList" aria-label="Menü-Items">
                     <!-- Dynamisch gefüllt von renderMenu() -->
