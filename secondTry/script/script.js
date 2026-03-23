@@ -151,12 +151,12 @@ function handleToggleFavorite(menuItem, itemName, category, itemIndex) {
 
   toggleFavorite(itemName, item, category);
   updateLikeUI(menuItem, itemName);
-}
+};
 
 function getItemByCategoryIndex(category, itemIndex) {
   const items = categoryMap[category] || [];
   return items[itemIndex];
-}
+};
 
 function updateLikeUI(menuItem, itemName) {
   const likeBtn = menuItem.querySelector(".likeBtn");
@@ -172,5 +172,20 @@ function updateLikeUI(menuItem, itemName) {
     likedIcon.classList.remove("active");
     console.log(` ${itemName} aus Favoriten entfernt`);
   }
-}
+};
 
+
+function toggleFavorite(itemName, item, category) {
+  const existingIndex = favoriteDishes.findIndex(
+    (fav) => fav.name === itemName,
+  );
+
+  if (existingIndex > -1) {
+    favoriteDishes.splice(existingIndex, 1);
+  } else {
+    const favoriteItem = { ...item, category };
+    favoriteDishes.push(favoriteItem);
+  }
+
+  localStorage.setItem("favoriteDishes", JSON.stringify(favoriteDishes));
+};
