@@ -117,15 +117,17 @@ function setupMenuActions() {
   menuList.addEventListener("click", handleMenuListClick);
 };
 
-function handleMenuListClick(event) {
+
+
+function handleMenuListClick(event){
   const menuItem = event.target.closest(".menuItem");
   if (!menuItem) return;
 
-  if (event.target.closest(".addBtn") && typeof handleAddToBasket === "function") {
+  if(event.target.closest(".addBtn")){
     handleAddToBasket(menuItem.dataset.itemName, menuItem.dataset.category);
   }
 
-  if (event.target.closest(".likeBtn") && typeof handleToggleFavorite === "function") {
+  if(event.target.closest(".likeBtn")){
     handleToggleFavorite(
       menuItem,
       menuItem.dataset.itemName,
@@ -133,5 +135,17 @@ function handleMenuListClick(event) {
       menuItem.dataset.itemIndex,
     );
   }
+};
+
+
+
+
+
+function handleAddToBasket(itemName, category){
+  const items = categoryMap[category] || [];
+  const item = items.find((i) => i.name === itemName);
+  if(!item) return;
+
+  addToCart (item, category);
 };
 
