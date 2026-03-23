@@ -189,3 +189,15 @@ function toggleFavorite(itemName, item, category) {
 
   localStorage.setItem("favoriteDishes", JSON.stringify(favoriteDishes));
 };
+
+
+function setupBasketToggle(){
+  const cartButton = document.getElementById("cartIcon");
+  const basket = document.getElementById("basketWrapper");
+
+  if(!cartButton || !basket) return;
+  basket.classList.add("is-closed");
+  cartButton.addEventListener("click", () => {
+    basket.classList.toggle("is-closed")
+  })
+};
