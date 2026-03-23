@@ -137,10 +137,6 @@ function handleMenuListClick(event){
   }
 };
 
-
-
-
-
 function handleAddToBasket(itemName, category){
   const items = categoryMap[category] || [];
   const item = items.find((i) => i.name === itemName);
@@ -148,4 +144,33 @@ function handleAddToBasket(itemName, category){
 
   addToCart (item, category);
 };
+
+function handleToggleFavorite(menuItem, itemName, category, itemIndex) {
+  const item = getItemByCategoryIndex(category, itemIndex);
+  if (!item) return;
+
+  toggleFavorite(itemName, item, category);
+  updateLikeUI(menuItem, itemName);
+}
+
+function getItemByCategoryIndex(category, itemIndex) {
+  const items = categoryMap[category] || [];
+  return items[itemIndex];
+}
+
+function updateLikeUI(menuItem, itemName) {
+  const likeBtn = menuItem.querySelector(".likeBtn");
+  const likedIcon = menuItem.querySelector(".likedIcon");
+  const isFavorite = favoriteDishes.some((fav) => fav.name === itemName);
+
+  if (isFavorite) {
+    likeBtn.classList.add("liked");
+    likedIcon.classList.add("active");
+    console.log(` ${itemName} zu Favoriten hinzugefügt`);
+  } else {
+    likeBtn.classList.remove("liked");
+    likedIcon.classList.remove("active");
+    console.log(` ${itemName} aus Favoriten entfernt`);
+  }
+}
 
