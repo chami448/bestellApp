@@ -201,3 +201,13 @@ function setupBasketToggle(){
     basket.classList.toggle("is-closed")
   })
 };
+
+function setupBasketActions() {
+  const basketContent = document.getElementById("basketContent");
+  if (!basketContent) return;
+
+  if (basketContent.dataset.bound === "true") return;
+  basketContent.dataset.bound = "true";
+
+  basketContent.addEventListener("click", handleBasketClick);
+};
