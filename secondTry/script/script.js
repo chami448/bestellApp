@@ -190,7 +190,7 @@ function toggleFavorite(itemName, item, category) {
   localStorage.setItem("favoriteDishes", JSON.stringify(favoriteDishes));
 };
 
-
+//basket functions
 function setupBasketToggle(){
   const cartButton = document.getElementById("cartIcon");
   const basket = document.getElementById("basketWrapper");
@@ -211,3 +211,159 @@ function setupBasketActions() {
 
   basketContent.addEventListener("click", handleBasketClick);
 };
+
+function handleBasketClick(e) {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  const action = btn.dataset.action;
+  const itemName = btn.dataset.itemName;
+  if (!action || !itemName) return;
+
+  switch (action) {
+    case "increase":
+      changeQuantity(itemName, 1);
+      break;
+    case "decrease":
+      changeQuantity(itemName, -1);
+      break;
+    case "remove":
+      removeFromCart(itemName);
+      break;
+    default:
+      break;
+  }
+};
+
+function setupDeliveryOptions() {
+  const btnDelivery = document.getElementById("btnDelivery");
+  const btnPickup = document.getElementById("btnPickup");
+
+  if (!btnDelivery || !btnPickup) return;
+
+  btnDelivery.addEventListener("click", () => {
+    deliveryMode = "delivery";
+    btnDelivery.classList.add("active");
+    btnPickup.classList.remove("active");
+    updateTotals();
+  });
+
+  btnPickup.addEventListener("click", () => {
+    deliveryMode = "pickup";
+    btnPickup.classList.add("active");
+    btnDelivery.classList.remove("active");
+    updateTotals();
+  });
+};
+
+function addToCart(item, category) {
+  const existing = cartItems.find((ci) => ci.name === item.name);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cartItems.push({
+      name: item.name,
+      price: item.price,
+      category,
+      quantity: 1,
+    });
+  }
+
+  updateCartUI();
+  updateTotals();
+};
+
+function changeQuantity(itemName, delta) {
+  const item = cartItems.find((ci) => ci.name === itemName);
+  if (!item) return;
+
+  if (delta < 0 && item.quantity === 1) {
+    alert("Menge kann nicht weiter reduziert werden.");
+    return;
+  }
+
+  item.quantity += delta;
+  updateCartUI();
+  updateTotals();
+};
+
+function removeFromCart(itemName) {
+  cartItems = cartItems.filter((ci) => ci.name !== itemName);
+  updateCartUI();
+  updateTotals();
+};
+
+function updateCartUI() {
+  const basketContent = document.getElementById("basketContent");
+  if (!basketContent) return;
+
+  switch (cartItems.length) {
+    case 0:
+      renderEmptyCart(basketContent);
+      break;
+    default:
+      basketContent.innerHTML = cartItems.map(buildCartItemHtml).join("");
+      updateCartBadge();
+      break;
+  }
+};
+
+function renderEmptyCart(container) {
+  container.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
+  updateCartBadge();
+};
+
+function buildCartItemHtml(item) {
+  const lineTotal = (item.price * item.quantity).toFixed(2);
+  return `
+            <div class="basket-item" data-item-name="${item.name}">
+                <div class="basket-item-info">
+                    <span class="basket-item-name">${item.name}</span>
+                    <span class="basket-item-price">${lineTotal} €</span>
+                </div>
+                <div class="basket-item-actions">
+                    <button class="qty-btn" data-action="decrease" data-item-name="${item.name}">−</button>
+                    <span class="basket-item-qty">${item.quantity}</span>
+                    <button class="qty-btn" data-action="increase" data-item-name="${item.name}">+</button>
+                    <button class="remove-btn" data-action="remove" data-item-name="${item.name}" aria-label="Entfernen">🗑</button>
+                </div>
+            </div>
+        `;
+};
+
+function calculateSubtotal() {
+  return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+};
+
+function calculateDeliveryCost() {
+  if (deliveryMode === "pickup") return 0;
+  return deliveryCost || 0;
+};
+
+function updateTotals() {
+  const subtotal = calculateSubtotal();
+  const delivery = calculateDeliveryCost();
+  const total = subtotal + delivery;
+
+  const subtotalEl = document.getElementById("subtotalPrice");
+  const deliveryEl = document.getElementById("deliveryPrice");
+  const totalEl = document.getElementById("totalPrice");
+
+  if (subtotalEl) subtotalEl.textContent = `${subtotal.toFixed(2)} €`;
+  if (deliveryEl) deliveryEl.textContent = `${delivery.toFixed(2)} €`;
+  if (totalEl) totalEl.textContent = `${total.toFixed(2)} €`;
+
+  updateCartBadge();
+};
+
+function updateCartBadge() {
+  const badge = document.getElementById("cartBadge");
+  if (!badge) return;
+
+  const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  badge.textContent = String(count);
+};
+
+
+//dialog part
+
