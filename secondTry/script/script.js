@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
   setActiveTab(startCategory);
   setupMenuTabs();
   setupMenuActions();
+  setupBasketToggle();
+  setupBasketActions();
+  setupDeliveryOptions();
+  updateCartUI();
+  updateTotals();
 });
 
 //connect function and localStorage
@@ -257,11 +262,11 @@ function setupDeliveryOptions() {
 };
 
 function addToCart(item, category) {
-  const existing = cartItems.find((ci) => ci.name === item.name);
+  const existing = basketItems.find((ci) => ci.name === item.name);
   if (existing) {
     existing.quantity += 1;
   } else {
-    cartItems.push({
+    basketItems.push({
       name: item.name,
       price: item.price,
       category,
@@ -274,7 +279,7 @@ function addToCart(item, category) {
 };
 
 function changeQuantity(itemName, delta) {
-  const item = cartItems.find((ci) => ci.name === itemName);
+  const item = basketItems.find((ci) => ci.name === itemName);
   if (!item) return;
 
   if (delta < 0 && item.quantity === 1) {
@@ -288,7 +293,7 @@ function changeQuantity(itemName, delta) {
 };
 
 function removeFromCart(itemName) {
-  cartItems = cartItems.filter((ci) => ci.name !== itemName);
+  basketItems = basketItems.filter((ci) => ci.name !== itemName);
   updateCartUI();
   updateTotals();
 };
@@ -297,12 +302,12 @@ function updateCartUI() {
   const basketContent = document.getElementById("basketContent");
   if (!basketContent) return;
 
-  switch (cartItems.length) {
+  switch (basketItems.length) {
     case 0:
       renderEmptyCart(basketContent);
       break;
     default:
-      basketContent.innerHTML = cartItems.map(buildCartItemHtml).join("");
+      basketContent.innerHTML = basketItems.map(buildCartItemHtml).join("");
       updateCartBadge();
       break;
   }
@@ -332,7 +337,7 @@ function buildCartItemHtml(item) {
 };
 
 function calculateSubtotal() {
-  return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return basketItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 };
 
 function calculateDeliveryCost() {
@@ -360,7 +365,7 @@ function updateCartBadge() {
   const badge = document.getElementById("cartBadge");
   if (!badge) return;
 
-  const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const count = basketItems.reduce((sum, item) => sum + item.quantity, 0);
   badge.textContent = String(count);
 };
 
