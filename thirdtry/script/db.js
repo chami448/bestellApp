@@ -130,34 +130,40 @@ const categoryMap = {
   favorites: favoriteDishes,
 };
 
-let deliveryCost = 2.99;
 
-
-let tip = [
-  { name: "5%",
-    value: 0.05,
-  },
-  { name: "10%",
-    value: 0.1,
-  },
-  { name: "15%",
-    value: 0.15,
-  },
-]
+const tip = [
+  { tip1: "5%", value: 0.05 },
+  { tip2: "10%", value: 0.1 },
+  { tip3: "15%", value: 0.15 },
+];
 
 let basketItems = [];
-let deliveryMode = "delivery";
+const pickOrDeliveryMode ={
+  deliveryMode : {
+    label : "Lieferung",
+    cost : 2.99,
+  },
+  pickupMode : {
+    label : "Abholung",
+    cost : 0,
+  },
+  minimumOrderValue : 15,
+};
 
 const iconMap = {
-    addIcon: "./image/icon/add_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-    likeIcon: "./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-    likedIcon: "./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-    removeIcon: "./image/icon/remove_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-  menuIcon: "./image/icon/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-    menuActiveIcon: "./image/icon/menu_open_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-    trashIcon: "./image/icon/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
-  logoImage: "./image/img/suggabearsclub-africa-9904843_640.png",
-  heroImage: "./image/img/buffetcrush-christmas-wallpaper-2009590_640.jpg",
-  bannerIcon: "./image/icon/clker-free-vector-images-place-setting-309980_640.png",
-  promoImage: "./image/img/luk1004-food-3083223_640.jpg",
+  addIcon: "./image/icon/add_icon.png",
+  removeIcon: "./image/icon/remove_icon.png",
+  bannerIcon1: "./image/icon/banner_icon1.png",
+  bannerIcon2: "./image/icon/banner_icon2.png",
+  deleteIcon: "./image/icon/delete_icon.png",
+  likeIcon: "./image/icon/like_icon.png",
+  likedIcon: "./image/icon/liked_icon.png",
+  menuOpenIcon: "./image/icon/menuOpen_icon.png",
+  menuCloseIcon: "./image/icon/menuClose_icon.png",
+};
+
+const imageMap = {
+  headerLogo: "./image/img/header_logo.png",
+  bannerLogo: "./image/img/banner_logo.jpg",
+  footerLogo: "./image/img/footer_logo.png",
 };
