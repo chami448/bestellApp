@@ -138,6 +138,7 @@ const tip = [
 ];
 
 let basketItems = [];
+
 const pickOrDeliveryMode ={
   deliveryMode : {
     label : "Lieferung",
