@@ -120,7 +120,7 @@ function renderFooter() {
   return `
         <footer id="footer">
             ${renderPromoSection()}
-            ${renderFooter()}
+            ${renderFooterSection()}
         </footer>
     `;
 }
