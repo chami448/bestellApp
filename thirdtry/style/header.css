@@ -1,3 +1,5 @@
+/* headerTitleStyle*/
+
 #header{
     display: grid;
     grid-template-areas: 
@@ -12,9 +14,7 @@
     grid-area: headerSection;
     background-color: var(--primary-color);
     padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    
+    border-radius: 10px 10px 0 0;
 }
 
 .headerContainer{
@@ -43,21 +43,77 @@
 #basketIcon {
     display: inline-flex;
     align-items: center;
-    border: none;
+    border: var(--secondary-color) 5px solid;
     border-radius: 10px;
     padding: 10px ;
+    cursor: pointer;
 }
 
+.basketBadge{
+    font-size: 30px;
+    font-weight: 700;
+    color: black;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
+
+
+/* headerBannerSection*/
 
 .headBanner {
     grid-area: headBanner;
 }
 
-.bannerImage, .bannerImage img {
+.bannerContainer {
+    position: relative;
+
+}
+
+ .bannerImage {
     width: 100%;
     height: 500px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.bannerIcon {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 60px;
+    height: 60px;
+}
+
+.bannerIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/*MainSection*/
+
+#mainContent{
+    display: grid;
+    grid-template-areas: 
+    "mainInfoSection"
+    "menuSection";
+    gap: 1fr;
+    padding: 1rem 3rem;
+}
+
+/*mainInfoSection*/
+
+.mainInfoSection {
+    grid-area: mainInfoSection;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.hidden {
+    display: none;
+}

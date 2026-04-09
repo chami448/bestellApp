@@ -28,7 +28,7 @@ function renderHeaderSection() {
                 <div class="headerIcon">
                 <button id="basketIcon" class="basket-btn" title="Warenkorb öffnen">
                     <img class="headerIcon" src="${iconMap.menuCloseIcon}" alt="Warenkorb">
-                    <span class="basket-badge" id="basketBadge">0</span>
+                    <span class="basketBadge" id="basketBadge">0</span>
                 </button>
             </div>
         
@@ -40,11 +40,11 @@ function renderBannerSection() {
   return `
         <section class="headBanner" aria-label="Willkommensbanner">
             <div class="bannerContainer">
-                <div class="bannerImage">
-                    <img src="${imageMap.bannerLogo}" alt="Mama'Sambia Speisen">
+                <div class="bannerImageContainer">
+                    <img class="bannerImage" src="${imageMap.bannerLogo}" alt="Mama'Sambia Speisen">
                 </div>
-                <div class="bannerIcon">
-                    <img src="${iconMap.bannerIcon2}" alt="Beste afrikanische Küche">
+                <div class="bannerIconContainer">
+                    <img class="bannerIcon" src="${iconMap.bannerIcon2}" alt="Beste afrikanische Küche">
                 </div>
             </div>
         </section>
@@ -106,7 +106,7 @@ function renderMenuSection() {
 
 function renderBasketSection() {
   return `
-        <aside class="basketSection" aria-label="Warenkorb">
+        <aside class="basketSection hidden" aria-label="Warenkorb">
             <div class="basketContainer">
                 <h2>Warenkorb</h2>
                 <div class="basketItems" id="basketItems">
