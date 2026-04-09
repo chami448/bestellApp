@@ -1,0 +1,21 @@
+#header{
+    display: grid;
+    grid-template-areas: 
+        "headerSection"
+        "headBanner";
+    gap: 1fr;
+    align-items: start;
+    padding: 1rem;
+}
+
+.headerSection {
+    grid-area: headerSection;
+    
+}
+
+
+
+
+.headBanner {
+    grid-area: headBanner;
+}

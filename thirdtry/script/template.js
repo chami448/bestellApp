@@ -16,12 +16,12 @@ function renderHeader() {
 
 function renderHeaderSection() {
   return `
-        <div class="headerSection">
+        <section class="headerSection">
             <div class="headerContainer">
                 <div class="headerLogo">
                     <figure>
-                        <img src="${imageMap.headerLogo}" alt="Mama'Afrika Logo">
-                        <figcaption>Mama'Afrika</figcaption>
+                        <img id="headerLogo" src="${imageMap.headerLogo}" alt="Mama'Afrika Logo">
+                        <figcaption>Mama'Sambia</figcaption>
                     </figure>
                 </div>
                 <h1 class="headerTitle">Mama'Sambia</h1>
@@ -31,7 +31,8 @@ function renderHeaderSection() {
                     <span class="basket-badge" id="basketBadge">0</span>
                 </button>
             </div>
-        </div>
+        
+    </section>
     `;
 }
 
