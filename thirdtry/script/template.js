@@ -19,15 +19,15 @@ function renderHeaderSection() {
         <section class="headerSection">
             <div class="headerContainer">
                 <div class="headerLogo">
-                    <figure>
+                    
                         <img id="headerLogo" src="${imageMap.headerLogo}" alt="Mama'Afrika Logo">
-                        <figcaption>Mama'Sambia</figcaption>
-                    </figure>
+                        
+                    
                 </div>
                 <h1 class="headerTitle">Mama'Sambia</h1>
                 <div class="headerIcon">
                 <button id="basketIcon" class="basket-btn" title="Warenkorb öffnen">
-                    <img src="${iconMap.menuCloseIcon}" alt="Warenkorb">
+                    <img class="headerIcon" src="${iconMap.menuCloseIcon}" alt="Warenkorb">
                     <span class="basket-badge" id="basketBadge">0</span>
                 </button>
             </div>

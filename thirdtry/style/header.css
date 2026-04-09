@@ -10,12 +10,54 @@
 
 .headerSection {
     grid-area: headerSection;
+    background-color: var(--primary-color);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     
 }
 
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+}
 
+#headerLogo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.headerTitle {
+    font-weight: 700;
+    font-size: 2rem;
+    color: #333;
+}
+
+.headerIcon img {
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+}
+
+#basketIcon {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    padding: 10px ;
+}
 
 
 .headBanner {
     grid-area: headBanner;
 }
+
+.bannerImage, .bannerImage img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
