@@ -166,5 +166,5 @@ const iconMap = {
 const imageMap = {
   headerLogo: "./image/img/header_logo.png",
   bannerLogo: "./image/img/banner_logo.jpg",
-  footerLogo: "./image/img/footer_logo.png",
+  footerLogo: "./image/img/footer_logo.jpg",
 };
