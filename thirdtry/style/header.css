@@ -23,16 +23,20 @@
 }
 
 #headerLogo {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     border-radius: 10px;
 }
 
 .headerTitle {
-    font-weight: 700;
-    font-size: 2rem;
+    font-weight: 900;
+    font-size: 3.1rem;
     color: #333;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 .headerIcon img {
@@ -45,7 +49,7 @@
     align-items: center;
     border: var(--secondary-color) 5px solid;
     border-radius: 10px;
-    padding: 10px ;
+    padding: 5px ;
     cursor: pointer;
 }
 
