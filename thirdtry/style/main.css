@@ -50,3 +50,28 @@
 .menuSection {
     grid-area: menuSection;
 }
+
+.menuTabs{
+    width: 100%;
+}
+
+.menuTabList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menuTabItem{
+    margin: 0;
+    padding: 0;
+    flex: 1 1 180px;
+    min-width: 140px;
+}
+
+.menuTabButton{
+    width: 100%;
+    
+}
