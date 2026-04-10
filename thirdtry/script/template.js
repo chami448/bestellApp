@@ -16,10 +16,10 @@ function createMenuItemCard(item, category, index, isFavorite){
             <p>${item.description || "Keine Beschreibung vorhanden"}</p>
         </div>
         <div class="menuItemActions">
-            <button id="addBtn" class="addBtn" title="Zum Korb hinzufügen">
+            <button class="addBtn" title="Zum Korb hinzufügen">
                 <img src="${iconMap.addIcon}" alt="Hinzufügen">
             </button>
-            <button id="likeBtn" class="likeBtn ${isFavorite ? "liked" : ""}" title="Zu Favoriten hinzufügen">
+            <button class="likeBtn ${isFavorite ? "liked" : ""}" title="Zu Favoriten hinzufügen">
                 <img class="likeIcon" src="${iconMap.likeIcon}" alt="Favorit">
                 <img class="likedIcon ${isFavorite ? "active" : ""}" src="${iconMap.likedIcon}" alt="Ist Favorit">
             </button>
