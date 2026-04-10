@@ -1,3 +1,34 @@
+function createMenuItemCard(item, category, index, isFavorite){
+    const menuContent = document.getElementById("menuContent");
+    if (!menuContent) return null;
+    const div = document.createElement("div");
+    div.className = "menuItem";
+    div.dataset.itemName = item.name;
+    div.dataset.category = category;
+    div.dataset.itemIndex = index;
+    div.innerHTML = `
+    <div class="menuItemContent">
+        <div class="menuItemHeader">
+            <h3>${item.name}</h3>
+            <span class="price">${item.price.toFixed(2)}€</span>
+        </div>
+        <div class="menuItemDescription">
+            <p>${item.description || "Keine Beschreibung vorhanden"}</p>
+        </div>
+        <div class="menuItemActions">
+            <button id="addBtn" class="addBtn" title="Zum Korb hinzufügen">
+                <img src="${iconMap.addIcon}" alt="Hinzufügen">
+            </button>
+            <button id="likeBtn" class="likeBtn ${isFavorite ? "liked" : ""}" title="Zu Favoriten hinzufügen">
+                <img class="likeIcon" src="${iconMap.likeIcon}" alt="Favorit">
+                <img class="likedIcon ${isFavorite ? "active" : ""}" src="${iconMap.likedIcon}" alt="Ist Favorit">
+            </button>
+        </div>
+    </div>
+    `;
+    menuContent.appendChild(div);
+}
+
 function renderPage() {
   const app = document.getElementById("app");
   if (!app) return;
