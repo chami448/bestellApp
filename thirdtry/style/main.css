@@ -1,0 +1,52 @@
+/*MainSection*/
+
+#mainContent{
+    display: grid;
+    grid-template-areas: 
+    "mainInfoSection"
+    "menuSection";
+    gap: 1fr;
+    padding: 1rem 3rem;
+}
+
+/*mainInfoSection*/
+
+.mainInfoSection {
+    grid-area: mainInfoSection;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.mainInfoContainer {
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+}
+
+ .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.highlight {
+    color: var(--highlight-color);
+    font-weight: 900;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+/* render Menu Tabs*/
+
+
+.menuSection {
+    grid-area: menuSection;
+}
