@@ -29,7 +29,8 @@
 
 
 .footerContainer{
-    background-color: aqua;
+    background-color: var(--accent-color);
+    color: white;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -39,7 +40,24 @@
 }
 
 .footerLinks{
+    background-color: var(--accent-color);
+    color: white;
     display: flex;
     justify-content: space-evenly;
-    background-color: aqua;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.footerLinks a{
+    color: white;
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footerLinks a:hover{
+    color: var(--button-color);
 }
