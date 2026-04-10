@@ -161,7 +161,7 @@ function renderPromoSection() {
   return `
         <section class="footerSection" aria-label="Werbebanner">
             <div class="footerSectionBanner">
-                <img src="${imageMap.footerLogo}" alt="Spezialgerichte von Mama'Sambia">
+                <img class="footerBanner" src="${imageMap.footerLogo}" alt="Spezialgerichte von Mama'Sambia">
             </div>
         </section>
     `;
@@ -171,20 +171,21 @@ function renderFooterSection() {
   return `
     
             <div class="footerContainer">
-                <div class="footerSection">
+                <div class="footerSectionLaw">
                     <span>&copy; Mama'Sambia 2024. Alle Rechte vorbehalten.</span>
                 </div>
-                <div class="footerSection">
+                <div class="footerSectionRate">
                     <span>Bewertung: 4,2 ⭐ von 5 Sternen</span>
                 </div>
-                <div class="footerSection">
+                
+            </div>
+            <div class="footerSectionLinks">
                     <nav class="footerLinks">
                         <a href="#">Kontakt</a>
                         <a href="#">Impressum</a>
                         <a href="#">Datenschutz</a>
                     </nav>
                 </div>
-            </div>
     
     `;
 }
