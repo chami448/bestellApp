@@ -66,7 +66,7 @@ function renderMainInfoSection() {
     <section class="mainInfoSection" aria-label="Hauptmenü">
             <div class="mainInfoContainer">
                 <div class="mainTitle">
-                    <h2>Willkommen bei Mama'Sambia</h2>
+                    <h2 class="title">Willkommen bei Mama'Sambia</h2>
                 </div>
                 <div class="mainDescription">
                     <p>

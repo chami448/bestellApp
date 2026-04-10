@@ -113,6 +113,23 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.mainInfoContainer {
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+}
+
+ .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.highlight {
+    color: var(--highlight-color);
+    font-weight: 900;
+}
+
 
 .hidden {
     display: none;
