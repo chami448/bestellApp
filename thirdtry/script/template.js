@@ -26,7 +26,7 @@ function renderHeaderSection() {
                 </div>
                 <h1 class="headerTitle">Mama'Sambia</h1>
                 <div class="headerIcon">
-                <button id="basketIcon" class="basket-btn" title="Warenkorb öffnen">
+                <button id="basketIcon" class="basket-btn" title="Warenkorb geschlossen">
                     <img class="headerIcon" src="${iconMap.menuCloseIcon}" alt="Warenkorb">
                     <span class="basketBadge" id="basketBadge">0</span>
                 </button>

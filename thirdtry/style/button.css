@@ -1,0 +1,14 @@
+.menuTabButton {
+    transition-duration: 0.5s;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 4px;
+    background: transparent;
+    
+}   
+
+.menuTabButton:hover {
+    background: var(--accent-color);
+    color: #fff;
+}
