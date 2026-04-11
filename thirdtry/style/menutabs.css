@@ -1,0 +1,16 @@
+.menuItemContent{
+    background-color: var(--secondary-color);
+    margin: 1rem;
+    padding: 1.5rem;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.addBtn{
+    cursor: pointer;
+}
+.likeIcon{
+    cursor: pointer;
+}
+.likedIcon{
+    display: none;
+}
