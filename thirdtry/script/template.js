@@ -12,9 +12,9 @@ function createMenuItemCard(item, category, index, isFavorite){
             <h3>${item.name}</h3>
             <span class="price">${item.price.toFixed(2)}€</span>
         </div>
-        <div class="menuItemDescription">
-            <p>${item.description || ""}</p>
-        </div>
+        
+            <p class="description">${item.description || ""}</p>
+        
         <div class="menuItemActions">
             <button class="addBtn" title="Zum Korb hinzufügen">
                 <img src="${iconMap.addIcon}" alt="Hinzufügen">

@@ -1,0 +1,51 @@
+
+#menuContent{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.menuItemContent{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    margin: 1rem;
+    padding: 1.5rem;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.menuItemHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+.menuItemHeader h3{
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.price{
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    white-space: nowrap;
+}
+
+.description{
+    font-size: 0.95rem;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    white-space: pre-wrap;
+}
+.addBtn{
+    cursor: pointer;
+}
+.likeIcon{
+    cursor: pointer;
+}
+.likedIcon{
+    display: none;
+}
