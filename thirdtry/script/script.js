@@ -10,6 +10,9 @@ function loadFromLocalStorage() {
     }
   }
 };
+function getInitialCategory(){
+  return favoriteDishes.length > 0 ? "favorites" : "mealOfTheDay";
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,9 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMenuByCategory(initialCategory);
 });
 
-function getInitialCategory(){
-  return favoriteDishes.length > 0 ? "favorites" : "mealOfTheDay";
-}
+
 
 function getCategoryItems(category) {
   switch (category) {

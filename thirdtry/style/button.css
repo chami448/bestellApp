@@ -9,6 +9,7 @@
 }   
 
 .menuTabButton:hover {
+    transform: translateY(-4px);
     background: var(--accent-color);
     color: #fff;
 }

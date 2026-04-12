@@ -1,3 +1,19 @@
+.menuItem {
+    background: var(--secondary-color);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0 10px 0;
+}
+
+.menuItem:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
 
 #menuContent{
     display: grid;
@@ -8,11 +24,8 @@
 .menuItemContent{
     display: flex;
     flex-direction: column;
-    background-color: var(--secondary-color);
     margin: 1rem;
     padding: 1.5rem;
-    border: 2px solid black;
-    border-radius: 10px;
 }
 
 .menuItemHeader{
