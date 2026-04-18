@@ -1,17 +1,21 @@
 
-
+function renderPage(){
+    const app = document.getElementById("app");
+    if (!app) return;
+    app.innerHTML = renderHeader() + renderBannerHeader() + renderBannerFooter(); 
+}
 
 
 
 function renderHeader(){
     return `
-            <header>
+            <header aria-label="Main Header">
                    <div class="headerContainer">
                         <div class = "headLogo">
                         <img src="${imageMap.headerLogo}" alt="Header Logo" class="headerLogo">
                         </div>
                         <div class = "headerTitle">
-                        <h1>Mama Sambia</h1>
+                        <h1 class="headerTitleText">Mama Sambia</h1>
                         </div>
                         <div class = "headBasketIcon">
                         <img src="${iconMap.menuCloseIcon}" alt="Menu Icon" class="menuCloseIcon">
@@ -24,7 +28,7 @@ function renderHeader(){
 
 function renderBannerHeader(){
     return`
-    <div class="bannerHeaderContainer">
+    <div class="bannerHeaderContainer" aria-label="Banner Header">
         <img src="${imageMap.headerBanner}" alt="Header Banner" class="headerBanner">
         <img src="${iconMap.bannerIcon2}" alt="Banner Icon 2" class="bannerIcon2">
     </div>
@@ -34,8 +38,8 @@ function renderBannerHeader(){
 
 function renderBannerFooter(){
     return`
-    <div class="bannerFooterContainer">
+    <div class="bannerFooterContainer" aria-label="Banner Footer">
         <img src="${imageMap.footerBanner}" alt="Footer Banner" class="footerBanner">
     </div>
     `;
-}
+};
