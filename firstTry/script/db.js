@@ -55,30 +55,37 @@ let myDrinks = [
   {
     name: "Coca-Cola",
     price: 3.5,
+    deposit: 0.25,
   },
   {
     name: "Fanta",
     price: 3.5,
+    deposit: 0.25,
   },
   {
     name: "Sprite",
     price: 3.5,
+    deposit: 0.25,
   },
   {
     name: "Water",
     price: 2.0,
+    deposit: 0.25,
   },
   {
     name: "Orange Juice",
     price: 4.0,
+    deposit: 0.25,
   },
   {
     name: "Apple Juice",
     price: 4.0,
+    deposit: 0.25,
   },
   {
     name: "Mango Juice",
     price: 4.0,
+    deposit: 0.25,
   },
 ];
 
@@ -86,18 +93,22 @@ let myalcoholicDrinks = [
   {
     name: "Krombacher Pils",
     price: 5.0,
+    deposit: 0.25,
   },
   {
     name: "Heineken",
     price: 5.0,
+    deposit: 0.25,
   },
   {
     name: "Guinness",
     price: 6.0,
+    deposit: 0.25,
   },
   {
     name: "Red Wine",
     price: 7.0,
+    deposit: 0.25,
   },
 ];
 
@@ -108,12 +119,7 @@ let mealOfTheDay = {
     "A delicious combination of spicy Jollof rice served with a hearty Okra soup.",
 };
 
-let deliveryCost = 2.99;
-
 let favoriteDishes = [];
-
-let cartItems = [];
-let deliveryMode = "delivery";
 
 const categoryMap = {
   dishes: myDishes,
@@ -122,4 +128,36 @@ const categoryMap = {
   drinks: myDrinks,
   mealOfTheDay: [mealOfTheDay],
   favorites: favoriteDishes,
+};
+
+let deliveryCost = 2.99;
+
+
+let tip = [
+  { name: "5%",
+    value: 0.05,
+  },
+  { name: "10%",
+    value: 0.1,
+  },
+  { name: "15%",
+    value: 0.15,
+  },
+]
+
+let basketItems = [];
+let deliveryMode = "delivery";
+
+const iconMap = {
+    addIcon: "./image/icon/add_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    likeIcon: "./image/icon/favorite_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    likedIcon: "./image/icon/heart_check_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    removeIcon: "./image/icon/remove_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+  menuIcon: "./image/icon/menu_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    menuActiveIcon: "./image/icon/menu_open_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+    trashIcon: "./image/icon/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png",
+  logoImage: "./image/img/suggabearsclub-africa-9904843_640.png",
+  heroImage: "./image/img/buffetcrush-christmas-wallpaper-2009590_640.jpg",
+  bannerIcon: "./image/icon/clker-free-vector-images-place-setting-309980_640.png",
+  promoImage: "./image/img/luk1004-food-3083223_640.jpg",
 };
