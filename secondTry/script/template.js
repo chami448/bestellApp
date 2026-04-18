@@ -24,7 +24,18 @@ function renderHeader(){
 
 function renderBannerHeader(){
     return`
-    
-    
+    <div class="bannerHeaderContainer">
+        <img src="${imageMap.headerBanner}" alt="Header Banner" class="headerBanner">
+        <img src="${iconMap.bannerIcon2}" alt="Banner Icon 2" class="bannerIcon2">
+    </div>
     `;
 };
+
+
+function renderBannerFooter(){
+    return`
+    <div class="bannerFooterContainer">
+        <img src="${imageMap.footerBanner}" alt="Footer Banner" class="footerBanner">
+    </div>
+    `;
+}
