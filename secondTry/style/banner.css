@@ -1,0 +1,20 @@
+.bannerHeaderContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerBanner{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.bannerIcon2{
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+    position: relative;
+    left: 50px;
+    top: 0;
+}
