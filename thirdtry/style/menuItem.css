@@ -47,18 +47,35 @@
 }
 
 .description{
-    font-size: 0.95rem;
+    font-size: 0.91rem;
     color: var(--text-color);
-    line-height: 1.5;
+    line-height: 1.3;
     margin-bottom: 1.5rem;
     white-space: pre-wrap;
 }
 .addBtn{
     cursor: pointer;
+    background-color: var(--accent-color);
+    width: 80%;
+    border-radius: 10px;
 }
+.addBtn:hover{
+    background-color: var(--highlight-color);
+}
+
 .likeIcon{
+    border-radius: 10px;
     cursor: pointer;
+    padding: 0;
+    margin: 0;
 }
 .likedIcon{
+    background-color: var(--accent-color);
     display: none;
+}
+
+.menuItemActions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
