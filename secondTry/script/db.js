@@ -1,4 +1,4 @@
-let myDishes = [
+let mainCourse = [
   {
     name: "Fufu - 300g",
     price: 5.0,
@@ -13,7 +13,7 @@ let myDishes = [
   },
 ];
 
-let mySupplements = [
+let sideDishes = [
   {
     name: "Pepper Stew",
     price: 14.0,
@@ -51,7 +51,7 @@ let mySupplements = [
   },
 ];
 
-let myDrinks = [
+let softDrinks = [
   {
     name: "Coca-Cola",
     price: 3.5,
@@ -89,7 +89,7 @@ let myDrinks = [
   },
 ];
 
-let myalcoholicDrinks = [
+let spiritsDrinks = [
   {
     name: "Krombacher Pils",
     price: 5.0,
@@ -114,7 +114,7 @@ let myalcoholicDrinks = [
 
 let mealOfTheDay = {
   name: "Jollof Rice with Okra Soup",
-  price: 15,
+  price: 15.00,
   description:
     "A delicious combination of spicy Jollof rice served with a hearty Okra soup.",
 };
@@ -122,10 +122,10 @@ let mealOfTheDay = {
 let favoriteDishes = [];
 
 const categoryMap = {
-  dishes: myDishes,
-  supplements: mySupplements,
-  alcoholicDrinks: myalcoholicDrinks,
-  drinks: myDrinks,
+  dishes: mainCourse,
+  supplements: sideDishes,
+  alcoholicDrinks: spiritsDrinks,
+  drinks: softDrinks,
   mealOfTheDay: [mealOfTheDay],
   favorites: favoriteDishes,
 };
@@ -148,8 +148,9 @@ const pickOrDeliveryMode ={
     label : "Abholung",
     cost : 0,
   },
-  minimumOrderValue : 15,
 };
+
+const minimumOrderValue = 15.00;
 
 const iconMap = {
   addIcon: "./image/icon/add_icon.png",
