@@ -1,0 +1,56 @@
+header{
+    background-color: var(--primary-color);
+    border-bottom: 2px solid var(--highlight-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.headerLogo{
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.headerTitleText{
+    font-family: 'Ubuntu-light', sans-serif;
+    font-size: 50px;
+    color: var(--text-color);
+    text-shadow: 3px 8px 10px var(--accent-color);
+}
+
+.headBasketIcon{
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+    object-fit: contain;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid var(--accent-color);
+    background-color: grey;
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.headBasketIcon:hover{
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
+#cartBadge{
+    color: var(--highlight-color);
+    font-family: 'Ubuntu-bold', sans-serif;
+    font-size: 24px;
+}

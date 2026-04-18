@@ -17,9 +17,10 @@ function renderHeader(){
                         <div class = "headerTitle">
                         <h1 class="headerTitleText">Mama Sambia</h1>
                         </div>
-                        <div class = "headBasketIcon">
+                        <button class = "headBasketIcon">
                         <img src="${iconMap.menuCloseIcon}" alt="Menu Icon" class="menuCloseIcon">
-                        </div>
+                        <span class="cartBadge" id="cartBadge">0</span>
+                        </button>
                    </div>
             </header>
     `;
