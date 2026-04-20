@@ -1,0 +1,22 @@
+.footerLinksContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footerLink{
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    border: 2px solid var(--accent-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footerLink:hover{
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
