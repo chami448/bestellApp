@@ -14,3 +14,10 @@
     gap: 50px;
     background-color: var(--primary-color);
 }
+
+.mainInfoTitleContainer{
+    text-align: left;
+    align-self: flex-start;
+    padding: 10px;
+    margin: 0;
+}

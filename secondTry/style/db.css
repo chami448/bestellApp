@@ -14,7 +14,7 @@
     --text-color: #333;
     --button-hover-color:#b8860b;
     --header-icon-size: 60px;
-    --icon-size: clamp(40px, 5vw, 60px);
+    --icon-size: 100px;
 }
 
 #app{

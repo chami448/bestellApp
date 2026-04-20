@@ -40,16 +40,18 @@ function renderMainInfoSection(){
     return`
             <section class="mainInfoSection" aria-label="Informationen">
                <div class="mainInfoContainer">
-                
+                <div class="mainInfoTitleContainer">
                 <h2 class="mainInfoTitle">Willkommen bei Mama Sambia</h2>
-                
+                </div>
+                <div class="mainInfoTextContainer">
                 <p class="mainInfoText">
                     Entdecken Sie die authentischen Aromen Sambias mit unserem vielfältigen Menü, 
                     das traditionelle Gerichte und moderne Interpretationen bietet. 
                     Genießen Sie die reiche Kultur und die köstlichen Geschmäcker, 
                     die wir mit Liebe zubereiten.
                 </p>
-
+                </div>
+                <div class="mainInfoHighlightContainer">
                 <p class="mainInfoNote">
                     <span class="highlight">Hinweis:</span> 
                     Es gibt nur zwei Hauptgerichte — 
@@ -57,6 +59,7 @@ function renderMainInfoSection(){
                     <span class="highlight">Jollofreis</span>. 
                     Alle weiteren Optionen sind Beilagen, die Sie nach Wunsch auswählen können.
                 </p>
+                </div>
 
             </div>
             </section>
