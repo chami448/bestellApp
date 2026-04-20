@@ -2,7 +2,7 @@
 function renderPage(){
     const app = document.getElementById("app");
     if (!app) return;
-    app.innerHTML = renderHeader() + renderBannerHeader() + renderMainInfoSection() + renderBannerFooter(); 
+    app.innerHTML = renderHeader() + renderBannerHeader() + renderMainInfoSection() + renderBannerFooter() + renderFooterLinks(); 
 }
 
 
@@ -75,3 +75,15 @@ function renderBannerFooter(){
     </div>
     `;
 };
+
+
+function renderFooterLinks(){
+    return`
+    <div class="footerLinksContainer" aria-label="Footer Links">
+        <a href="#" class="footerLink">Impressum</a>
+        <a href="#" class="footerLink">Datenschutz</a>
+        <a href="#" class="footerLink">AGB</a>  
+    </div>
+    
+    `;
+}
