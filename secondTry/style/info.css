@@ -3,7 +3,10 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    padding: 20px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    margin-top: 5px;
+    border-radius: 14px;
 }
 
 .mainInfoContainer{
@@ -12,7 +15,7 @@
     align-items: center;
     font-family: 'Ubuntu', sans-serif;
     gap: 50px;
-    background-color: var(--primary-color);
+    
 }
 
 .mainInfoTitleContainer{
@@ -20,4 +23,15 @@
     align-self: flex-start;
     padding: 10px;
     margin: 0;
+}
+
+.mainInfoTextContainer, .mainInfoHighlightContainer{
+    text-align: center;
+    flex-wrap: wrap;
+    font-size: 20px;
+}
+
+.highlight{
+    color: var(--highlight-color);
+    font-weight: bold;
 }
