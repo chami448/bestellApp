@@ -8,7 +8,7 @@
 .menuTabsContainer{
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 20px;
 }
 
 .menuTabsNav{
@@ -19,6 +19,8 @@
 }
 
 .menuTab{
+    background-color: var(--highlight-color);
+    color: whitesmoke;
     border: 2px solid black;
     border-radius: 8px;
     padding: 10px 20px;
