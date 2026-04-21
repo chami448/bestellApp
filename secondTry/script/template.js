@@ -81,11 +81,21 @@ function renderBasket(){
                         <p class="basketTotalText">Gesamt: <span id="basketTotalPrice">0,00 €</span></p>
                     </div>
                     <div class="deliveryOptionsContainer">
-                        <button class="deliveryOptionButton" id="delivery">Lieferung</button>
-                        <button class="deliveryOptionButton" id="pickup">Abholung</button>
+                        <button class="deliveryOptionButton" id="delivery" tabindex="0">Lieferung</button>
+                        <button class="deliveryOptionButton" id="pickup" tabindex="0">Abholung</button>
                     </div>
+                    <div class="tipContainer">
+                        <p class="tipText">Trinkgeld:</p>
+                        <div class="tipOptionsContainer">
+                            <button class="tipOptionButton" data-tip="0.05" tabindex="0">5%</button>
+                            <button class="tipOptionButton" data-tip="0.1" tabindex="0">10%</button>
+                            <button class="tipOptionButton" data-tip="0.15" tabindex="0">15%</button>
+                        </div>
+                    </div>
+                    <div class="checkoutContainer">
                     <button class="checkoutButton" id="checkoutButton" tabindex="0">Zur Kasse</button>
-
+                    <p class="minimumOrderNote">Mindestbestellwert: 15,00 €</p>
+                    </div>
                 </div>
         </aside>
     
