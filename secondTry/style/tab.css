@@ -1,0 +1,33 @@
+.menuTabsSection{
+    background-color: var(--secondary-color);
+    font-family: 'Ubuntu', sans-serif;
+    margin: 10px 0 10px 0;
+    border-radius: 14px;
+}
+
+.menuTabsContainer{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.menuTabsNav{
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.menuTab{
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.menuTab:hover{
+    transform: scale(1.1);
+    background-color: var(--button-color);
+    color: var(--highlight-color);
+}
