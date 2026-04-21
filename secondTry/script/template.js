@@ -69,12 +69,12 @@ function renderMainInfoSection(){
 
 function renderBasket(){
     return`
-        <aside class="basketSection" aria-label="Warenkorb">
+        <aside class="basketSection" id="basketSection" aria-label="Warenkorb">
                 <div class="basketContainer">
                     <div class="basketTitleContainer">
                         <h2 class="basketTitle">Warenkorb</h2>
                     </div>
-                    <div class="basketItemsContainer" id="basketItemsContainer">
+                    <div class="basketItemsContainer" >
                         <!-- Hier werden die Warenkorb-Items dynamisch eingefügt -->
                     </div>
                     <div class="basketTotalContainer">
@@ -114,6 +114,9 @@ function renderMenuTabs(){
                 <span class="menuTab" data-category="mealOfTheDay" tabindex="0">Speise des Tages</span>
                 <span class="menuTab" data-category="favorites" tabindex="0"> Favoriten</span>
             </nav>
+            <div class="menuItemsContainer" aria-label="Menü Items">
+                <!-- Hier werden die Menü-Items dynamisch eingefügt -->
+            </div>
         </div>
     </section>
     
