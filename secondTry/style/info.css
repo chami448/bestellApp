@@ -25,6 +25,12 @@
     margin: 0;
 }
 
+.mainInfoTitle{
+    text-decoration: underline;
+    font-size: 28px;
+    color: var(--highlight-color);
+}
+
 .mainInfoTextContainer, .mainInfoHighlightContainer{
     text-align: center;
     flex-wrap: wrap;
