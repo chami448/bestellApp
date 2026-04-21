@@ -67,6 +67,31 @@ function renderMainInfoSection(){
     `;
 }
 
+function renderBasket(){
+    return`
+        <aside class="basketSection" aria-label="Warenkorb">
+                <div class="basketContainer">
+                    <div class="basketTitleContainer">
+                        <h2 class="basketTitle">Warenkorb</h2>
+                    </div>
+                    <div class="basketItemsContainer" id="basketItemsContainer">
+                        <!-- Hier werden die Warenkorb-Items dynamisch eingefügt -->
+                    </div>
+                    <div class="basketTotalContainer">
+                        <p class="basketTotalText">Gesamt: <span id="basketTotalPrice">0,00 €</span></p>
+                    </div>
+                    <div class="deliveryOptionsContainer">
+                        <button class="deliveryOptionButton" id="delivery">Lieferung</button>
+                        <button class="deliveryOptionButton" id="pickup">Abholung</button>
+                    </div>
+                    <button class="checkoutButton" id="checkoutButton" tabindex="0">Zur Kasse</button>
+
+                </div>
+        </aside>
+    
+    `;
+}
+
 function renderMenuTabs(){
     return`
     <section class="menuTabsSection" aria-label="Menü Tabs">
@@ -84,6 +109,8 @@ function renderMenuTabs(){
     
     `;
 }
+
+
 
 
 function renderBannerFooter(){
