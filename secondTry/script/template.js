@@ -2,7 +2,7 @@
 function renderPage(){
     const app = document.getElementById("app");
     if (!app) return;
-    app.innerHTML = renderHeader() + renderBannerHeader() + renderMainInfoSection() + renderBannerFooter() + renderFooterLinks(); 
+    app.innerHTML = renderHeader() + renderBannerHeader() + renderMainInfoSection() + renderMenuTabs() + renderBannerFooter() + renderFooterLinks(); 
 }
 
 
@@ -18,7 +18,7 @@ function renderHeader(){
                         <h1 class="headerTitleText">Mama Sambia</h1>
                         </div>
                         <button class = "headBasketIcon">
-                        <img src="${iconMap.menuCloseIcon}" alt="Menü Symbol" class="menuCloseIcon">
+                        <img src="${iconMap.menuCloseIcon}" alt="Menü Symbol" class="menuCloseIcon" tabindex="0">
                         <span class="cartBadge" id="cartBadge">0</span>
                         </button>
                    </div>
@@ -67,6 +67,24 @@ function renderMainInfoSection(){
     `;
 }
 
+function renderMenuTabs(){
+    return`
+    <section class="menuTabsSection" aria-label="Menü Tabs">
+        <div class="menuTabsContainer">
+            <nav class="menuTabsNav">
+                <span class="menuTab" data-category="dishes" tabindex="0">Hauptgerichte</span>
+                    <span class="menuTab" data-category="supplements" tabindex="0">Beilagen</span>
+                    <span class="menuTab" data-category="alcoholicDrinks" tabindex="0">Alkoholische Getränke</span>
+                    <span class="menuTab" data-category="drinks" tabindex="0">Soft-Getränke</span>
+                    <span class="menuTab" data-category="mealOfTheDay" tabindex="0">Speise des Tages</span>
+                    <span class="menuTab" data-category="favorites" tabindex="0">❤️ Favoriten</span>
+            </nav>
+        </div>
+    </section>
+    
+    `;
+}
+
 
 function renderBannerFooter(){
     return`
@@ -80,9 +98,9 @@ function renderBannerFooter(){
 function renderFooterLinks(){
     return`
     <div class="footerLinksContainer" aria-label="Footer Links">
-        <a href="#" class="footerLink">Impressum</a>
-        <a href="#" class="footerLink">Datenschutz</a>
-        <a href="#" class="footerLink">AGB</a>  
+        <a href="#" class="footerLink" tabindex="0">Impressum</a>
+        <a href="#" class="footerLink" tabindex="0">Datenschutz</a>
+        <a href="#" class="footerLink" tabindex="0">AGB</a>  
     </div>
     
     `;
