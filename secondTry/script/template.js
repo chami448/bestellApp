@@ -1,4 +1,4 @@
-/*function createMenuItemCard(item, category, index){
+function createMenuItemCard(item, category, index){
     const div = document.createElement("div");
     div.className = "menuItemCard";
     div.dataset.itemName = item.name;
@@ -23,7 +23,7 @@
     </div>
     `;
     return div;
-}*/
+}
 
 
 function renderPage(){
@@ -152,7 +152,7 @@ function renderMenuTabs(){
 
 function renderMenuItems(){
     return`
-        <div class="MenuItemCardsContainer" aria-label="Menü Item Karten">
+        <div class="menuItemCard" aria-label="Menü Item Karten">
             <div class="menuItemHeader">
         <h3 aria-label="${item.name}">${item.name}</h3>
         <span aria-label="Preis: ${item.price.toFixed(2)} Euro" class="price">${item.price.toFixed(2)} €</span>

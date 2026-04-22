@@ -7,6 +7,8 @@
 
 .menuTabsContainer{
     display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
     justify-content: center;
     padding: 20px;
 }
@@ -32,4 +34,18 @@
     transform: scale(1.1);
     background-color: var(--button-color);
     color: var(--highlight-color);
+}
+
+.menuTab.active{
+    background-color: var(--button-color);
+    color: var(--highlight-color);
+    border: 2px solid var(--highlight-color);
+}
+
+.menuItemsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+    justify-content: center;
+    padding: 20px;
 }
