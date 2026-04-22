@@ -59,6 +59,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .menuItemHeader{
@@ -66,6 +67,12 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.price{
+    font-size: 18px;
+    color: var(--highlight-color);
+    font-weight: bold;
 }
 
 .menuItemText{
@@ -78,4 +85,44 @@
     display: flex;
     justify-content: flex-end;
     gap: 30px;
+}
+
+.addBtn{
+    background-color: var(--highlight-color);
+    color: var(--highlight-color);
+    border: 2px solid var(--highlight-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.addBtn:hover{
+    background-color: var(--button-color);
+    color: var(--highlight-color);
+}
+
+.likeBtn{
+    background-color: transparent;
+    color: var(--highlight-color);
+    border: 2px solid var(--highlight-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.likeBtn:hover{
+    background-color: var(--highlight-color);
+    color: var(--button-color);
+}
+
+.likeIcon{
+    color: var(--highlight-color);
+    background-color: transparent;
+}
+
+.likedIcon{
+    color: transparent;
+    background-color: var(--highlight-color);
 }
