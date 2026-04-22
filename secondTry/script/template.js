@@ -149,8 +149,8 @@ function renderMenuTabs(){
     
     `;
 }
-
-function renderMenuItems(){
+/*
+function renderMenuItemCard(item, category, index){
     return`
         <div class="menuItemCard" aria-label="Menü Item Karten">
             <div class="menuItemHeader">
@@ -170,7 +170,7 @@ function renderMenuItems(){
         </button>
     </div>
     `;
-}
+}*/
 
 
 
