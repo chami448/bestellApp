@@ -1,6 +1,27 @@
+function loadFromLocalStorage() {
+  const stored = localStorage.getItem("favoriteDishes");
+  if (!stored) return;
+
+  try {
+    const loaded = JSON.parse(stored);
+    favoriteDishes.length = 0;
+    favoriteDishes.push(...loaded);
+  } catch (e) {
+    console.error("Fehler beim Laden von LocalStorage:", e);
+  }
+}
+
+function getInitialCategory() {
+  return favoriteDishes.length > 0 ? "favorites" : "dishes";
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
+    loadFromLocalStorage();
+    const startCartegory = getInitialCategory();
     renderPage();
-    renderMenuItems("dishes");
+    renderMenuItems(startCartegory);
+    setActiveTab(startCartegory);
     setupMenuTabs();
 })
 
