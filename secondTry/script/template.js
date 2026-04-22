@@ -1,3 +1,30 @@
+function createMenuItemCard(item, category, index){
+    const div = document.createElement("div");
+    div.className = "menuItemCard";
+    div.dataset.itemName = item.name;
+    div.dataset.category = category;
+    div.dataset.itemIndex = index;
+    div.innerHTML = `
+    <div class="menuItemHeader">
+        <h3 aria-label="${item.name}">${item.name}</h3>
+        <span aria-label="Preis: ${item.price.toFixed(2)} Euro" class="price">${item.price.toFixed(2)} €</span>
+    </div>
+    <div class="menuItemText">
+        <p aria-label="Beschreibung: ${item.description || "Keine Beschreibung vorhanden"}">${item.description || "Keine Beschreibung vorhanden"}</p>
+    </div>
+    <div class="menuItemActions">
+        <button class="addBtn" aria-label="Zum Korb hinzufügen ${item.name}?" title="Zum Korb hinzufügen">
+            <img src="${iconMap.addIcon}" alt="Hinzufügen">
+        </button>
+        <button class="likeBtn" aria-label="Zu Favoriten hinzufügen ${item.name}?" title="Zu Favoriten hinzufügen">
+            <img class="likeIcon" src="${iconMap.likeIcon}" alt="Zu Favoriten hinzufügen">
+            <img class="likedIcon" src="${iconMap.likedIcon}" alt="Ist Favorit">
+        </button>
+    </div>
+    `;
+    return div;
+}
+
 
 function renderPage(){
     const app = document.getElementById("app");
