@@ -120,6 +120,5 @@
 
 .likedIcon{
     display: none;
-    color: transparent;
     background-color: var(--highlight-color);
 }
