@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMenuItems(startCartegory);
     setActiveTab(startCartegory);
     setupMenuTabs();
+    setupLikeButtons();
 })
 
 function getCategoryItems(category) {
@@ -72,4 +73,39 @@ function setActiveTab(activeCategory) {
     const isActive = tab.dataset.category === activeCategory;
     tab.classList.toggle("active", isActive);
   });
+}
+
+function toggleLikeButtonState(likeBtn){
+  const isPressed = likeBtn.getAttribute("aria-pressed") === "true";
+  const nextPressed = !isPressed;
+  likeBtn.setAttribute("aria-pressed", String(nextPressed));
+  const likeIcon = likeBtn.querySelector(".likeIcon");
+  const likedIcon = likeBtn.querySelector(".likedIcon");
+  likeIcon.hidden = nextPressed;
+  likedIcon.hidden = !nextPressed;
+}
+
+function setupLikeButtons() {
+  const container = document.querySelector(".menuItemsContainer");
+  if (!container) return;
+
+  container.addEventListener("click", handleLikeClick);
+  container.addEventListener("keydown", handleLikeKeydown);
+}
+
+function handleLikeClick(event) {
+  const likeBtn = event.target.closest(".likeBtn");
+  if (!likeBtn) return;
+
+  toggleLikeButtonState(likeBtn);
+}
+
+function handleLikeKeydown(event) {
+  if (event.key !== "Enter" && event.key !== " ") return;
+
+  const likeBtn = event.target.closest(".likeBtn");
+  if (!likeBtn) return;
+
+  event.preventDefault();
+  toggleLikeButtonState(likeBtn);
 }

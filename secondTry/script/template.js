@@ -14,11 +14,11 @@ function createMenuItemCard(item, category, index){
     </div>
     <div class="menuItemActions">
         <button class="addBtn" aria-label="Zum Korb hinzufügen ${item.name}?" title="Zum Korb hinzufügen">
-            <img src="${iconMap.addIcon}" alt="Hinzufügen">
+            <img class="actionIcon" src="${iconMap.addIcon}" alt="Hinzufügen">
         </button>
         <button class="likeBtn" aria-label="Zu Favoriten hinzufügen ${item.name}?" title="Zu Favoriten hinzufügen" aria-pressed="false">
             <img class="likeIcon actionIcon" src="${iconMap.likeIcon}" alt="Zu Favoriten hinzufügen">
-            <img class="likedIcon actionIcon" src="${iconMap.likedIcon}" alt="Ist Favorit">
+            <img class="likedIcon actionIcon" src="${iconMap.likedIcon}" alt="Ist Favorit" hidden>
         </button>
     </div>
     `;
