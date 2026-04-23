@@ -111,4 +111,4 @@ function handleLikeKeydown(event) {
 }
 
 
-//localstorage speichern der favoriten liste kommt als nächstes
+//localstorage speichern der favoriten liste kommt als nächstes 

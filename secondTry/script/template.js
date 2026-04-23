@@ -1,10 +1,10 @@
-function createMenuItemCard(item, category, index){
-    const div = document.createElement("div");
-    div.className = "menuItemCard";
-    div.dataset.itemName = item.name;
-    div.dataset.category = category;
-    div.dataset.itemIndex = index;
-    div.innerHTML = `
+function createMenuItemCard(item, category, index, isFavorite) {
+  const div = document.createElement("div");
+  div.className = "menuItemCard";
+  div.dataset.itemName = item.name;
+  div.dataset.category = category;
+  div.dataset.itemIndex = index;
+  div.innerHTML = `
     <div class="menuItemHeader">
         <h3 aria-label="${item.name}">${item.name}</h3>
         <span aria-label="Preis: ${item.price.toFixed(2)} Euro" class="price">${item.price.toFixed(2)} €</span>
@@ -16,26 +16,43 @@ function createMenuItemCard(item, category, index){
         <button class="addBtn" aria-label="Zum Korb hinzufügen ${item.name}?" title="Zum Korb hinzufügen">
             <img class="actionIcon" src="${iconMap.addIcon}" alt="Hinzufügen">
         </button>
-        <button class="likeBtn" aria-label="Zu Favoriten hinzufügen ${item.name}?" title="Zu Favoriten hinzufügen" aria-pressed="false">
-            <img class="likeIcon actionIcon" src="${iconMap.likeIcon}" alt="Zu Favoriten hinzufügen">
-            <img class="likedIcon actionIcon" src="${iconMap.likedIcon}" alt="Ist Favorit" hidden>
+        <button class="likeBtn"
+        aria-label="${isFavorite ? "Aus Favoriten entfernen" : "Zu Favoriten hinzufügen"} ${item.name}?"
+        title="${isFavorite ? "Aus Favoriten entfernen" : "Zu Favoriten hinzufügen"}"
+        aria-pressed="${String(isFavorite)}">
+
+        <img
+          class="likeIcon actionIcon"
+          src="${iconMap.likeIcon}"
+          alt="Zu Favoriten hinzufügen"
+          ${isFavorite ? "hidden" : ""}>
+
+        <img
+          class="likedIcon actionIcon"
+          src="${iconMap.likedIcon}"
+          alt="Ist Favorit"
+          ${isFavorite ? "" : "hidden"}>
+                  
         </button>
     </div>
     `;
-    return div;
+  return div;
 }
 
-
-function renderPage(){
-    const app = document.getElementById("app");
-    if (!app) return;
-    app.innerHTML = renderHeader() + renderBannerHeader() + renderMainInfoSection() + renderMenuTabs() + renderBannerFooter() + renderFooterLinks(); 
+function renderPage() {
+  const app = document.getElementById("app");
+  if (!app) return;
+  app.innerHTML =
+    renderHeader() +
+    renderBannerHeader() +
+    renderMainInfoSection() +
+    renderMenuTabs() +
+    renderBannerFooter() +
+    renderFooterLinks();
 }
 
-
-
-function renderHeader(){
-    return `
+function renderHeader() {
+  return `
             <header aria-label="Main Header">
                    <div class="headerContainer">
                         <div class = "headLogo">
@@ -51,20 +68,19 @@ function renderHeader(){
                    </div>
             </header>
     `;
-};
+}
 
-
-function renderBannerHeader(){
-    return`
+function renderBannerHeader() {
+  return `
     <div class="bannerHeaderContainer" aria-label="Kopfzeilen Banner">
         <img src="${imageMap.headerBanner}" alt="Kopfzeilen Banner" class="headerBanner">
         <img src="${iconMap.bannerIcon2}" alt="Kopfzeilen Symbol 2" class="bannerIcon2">
     </div>
     `;
-};
+}
 
-function renderMainInfoSection(){
-    return`
+function renderMainInfoSection() {
+  return `
             <section class="mainInfoSection" aria-label="Informationen">
                <div class="mainInfoContainer">
                 <div class="mainInfoTitleContainer">
@@ -94,8 +110,8 @@ function renderMainInfoSection(){
     `;
 }
 
-function renderBasket(){
-    return`
+function renderBasket() {
+  return `
         <aside class="basketSection" id="basketSection" aria-label="Warenkorb">
                 <div class="basketContainer">
                     <div class="basketTitleContainer">
@@ -129,8 +145,8 @@ function renderBasket(){
     `;
 }
 
-function renderMenuTabs(){
-    return`
+function renderMenuTabs() {
+  return `
     <section class="menuTabsSection" aria-label="Menü Tabs">
         <div class="menuTabsContainer">
             <nav class="menuTabsNav">
@@ -172,20 +188,16 @@ function renderMenuItemCard(item, category, index){
     `;
 }*/
 
-
-
-
-function renderBannerFooter(){
-    return`
+function renderBannerFooter() {
+  return `
     <div class="bannerFooterContainer" aria-label="Banner Footer">
         <img src="${imageMap.footerBanner}" alt="Footer Banner" class="footerBanner">
     </div>
     `;
-};
+}
 
-
-function renderFooterLinks(){
-    return`
+function renderFooterLinks() {
+  return `
     <div class="footerLinksContainer" aria-label="Footer Links">
         <a href="#" class="footerLink" tabindex="0">Impressum</a>
         <a href="#" class="footerLink" tabindex="0">Datenschutz</a>
