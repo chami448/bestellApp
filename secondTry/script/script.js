@@ -1,5 +1,15 @@
+
+
+
+const KEY_FAVORITES = "favoriteDishes";
+
+function saveFavoritesToLocalStorage(){
+  localStorage.setItem(KEY_FAVORITES, JSON.stringify(favoriteDishes));
+}
+
+
 function loadFromLocalStorage() {
-  const stored = localStorage.getItem("favoriteDishes");
+  const stored = localStorage.getItem(KEY_FAVORITES);
   if (!stored) return;
 
   try {
@@ -50,7 +60,8 @@ function renderMenuItems(category){
         return;
     }
     items.forEach((item, index) => {
-        const itemCard = createMenuItemCard(item, category, index);
+        const isFavorite = favoriteDishes.some((fav) => fav.name === item.name);
+        const itemCard = createMenuItemCard(item, category, index, isFavorite);
         container.appendChild(itemCard);
     });
 }
