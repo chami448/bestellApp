@@ -109,3 +109,6 @@ function handleLikeKeydown(event) {
   event.preventDefault();
   toggleLikeButtonState(likeBtn);
 }
+
+
+//localstorage speichern der favoriten liste kommt als nächstes
