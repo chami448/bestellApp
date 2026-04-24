@@ -3,9 +3,6 @@
 
 const KEY_FAVORITES = "favoriteDishes";
 
-function saveFavoritesToLocalStorage(){
-  localStorage.setItem(KEY_FAVORITES, JSON.stringify(favoriteDishes));
-}
 
 
 function loadFromLocalStorage() {
@@ -14,11 +11,17 @@ function loadFromLocalStorage() {
 
   try {
     const loaded = JSON.parse(stored);
+    if (!Array.isArray(loaded)) return;
     favoriteDishes.length = 0;
     favoriteDishes.push(...loaded);
   } catch (e) {
     console.error("Fehler beim Laden von LocalStorage:", e);
   }
+}
+
+
+function saveFavoritesToLocalStorage(){
+  localStorage.setItem(KEY_FAVORITES, JSON.stringify(favoriteDishes));
 }
 
 function getInitialCategory() {
@@ -33,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMenuItems(startCartegory);
     setActiveTab(startCartegory);
     setupMenuTabs();
-    setupLikeButtons();
+    setupMenuItemActions();
 })
 
 function getCategoryItems(category) {
@@ -68,50 +71,115 @@ function renderMenuItems(category){
 
 function setupMenuTabs() {
   const tabs = document.querySelectorAll(".menuTab");
+
   tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const category = tab.dataset.category;
-      if (!category) return;
-      setActiveTab(category);
-      renderMenuItems(category);
-    });
+    tab.addEventListener("click", () => activateCategory(tab.dataset.category));
+    tab.addEventListener("keydown", (event) => handleTabKeydown(event, tab.dataset.category));
   });
+}
+
+function handleTabKeydown(event, category) {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  activateCategory(category);
+}
+
+function activateCategory(category) {
+  if (!category) return;
+  setActiveTab(category);
+  renderMenuItems(category);
 }
 
 function setActiveTab(activeCategory) {
   const tabs = document.querySelectorAll(".menuTab");
   tabs.forEach((tab) => {
-    const isActive = tab.dataset.category === activeCategory;
-    tab.classList.toggle("active", isActive);
+    tab.classList.toggle("active", tab.dataset.category === activeCategory);
   });
 }
 
-function toggleLikeButtonState(likeBtn){
-  const isPressed = likeBtn.getAttribute("aria-pressed") === "true";
-  const nextPressed = !isPressed;
-  likeBtn.setAttribute("aria-pressed", String(nextPressed));
-  const likeIcon = likeBtn.querySelector(".likeIcon");
-  const likedIcon = likeBtn.querySelector(".likedIcon");
-  likeIcon.hidden = nextPressed;
-  likedIcon.hidden = !nextPressed;
+function getItemFromCardData(card) {
+  const itemName = card.dataset.itemName;
+  const category = card.dataset.category;
+  const itemIndex = Number(card.dataset.itemIndex);
+  const sourceItems = getCategoryItems(category);
+  const item = sourceItems[itemIndex];
+
+  return { itemName, category, item };
 }
 
-function setupLikeButtons() {
+function toggleLikeButtonState(likeBtn) {
+  const card = likeBtn.closest(".menuItemCard");
+  if (!card) return;
+
+  const { itemName, category, item } = getItemFromCardData(card);
+  if (!item) return;
+
+  const existingIndex = favoriteDishes.findIndex((fav) => fav.name === itemName);
+  const isNowFavorite = existingIndex === -1;
+
+  if (isNowFavorite) {
+    favoriteDishes.push({ ...item, category });
+  } else {
+    favoriteDishes.splice(existingIndex, 1);
+  }
+
+  saveFavoritesToLocalStorage();
+  updateLikeButtonUI(likeBtn, isNowFavorite, itemName);
+  refreshFavoritesIfActiveTab();
+}
+
+function updateLikeButtonUI(likeBtn, isFavorite, itemName) {
+  const likeIcon = likeBtn.querySelector(".likeIcon");
+  const likedIcon = likeBtn.querySelector(".likedIcon");
+  if (!likeIcon || !likedIcon) return;
+
+  likeBtn.setAttribute("aria-pressed", String(isFavorite));
+  likeBtn.setAttribute(
+    "aria-label",
+    isFavorite
+      ? `Aus Favoriten entfernen ${itemName}?`
+      : `Zu Favoriten hinzufügen ${itemName}?`
+  );
+  likeBtn.setAttribute(
+    "title",
+    isFavorite ? "Aus Favoriten entfernen" : "Zu Favoriten hinzufügen"
+  );
+
+  likeIcon.hidden = isFavorite;
+  likedIcon.hidden = !isFavorite;
+}
+
+function refreshFavoritesIfActiveTab() {
+  const activeTab = document.querySelector(".menuTab.active");
+  const activeCategory = activeTab ? activeTab.dataset.category : "dishes";
+
+  if (activeCategory === "favorites") {
+    renderMenuItems("favorites");
+  }
+}
+
+function setupMenuItemActions() {
   const container = document.querySelector(".menuItemsContainer");
   if (!container) return;
 
-  container.addEventListener("click", handleLikeClick);
-  container.addEventListener("keydown", handleLikeKeydown);
+  container.addEventListener("click", handleMenuItemClick);
+  container.addEventListener("keydown", handleMenuItemKeydown);
 }
 
-function handleLikeClick(event) {
+function handleMenuItemClick(event) {
   const likeBtn = event.target.closest(".likeBtn");
-  if (!likeBtn) return;
-
-  toggleLikeButtonState(likeBtn);
+  if (likeBtn) {
+    toggleLikeButtonState(likeBtn);
+    return;
+  }
+  const addBtn = event.target.closest(".addBtn");
+  if (addBtn) {
+      //TODO: Funktionalität für "In den Warenkorb" hinzufügen
+  }
+  
 }
 
-function handleLikeKeydown(event) {
+function handleMenuItemKeydown(event) {
   if (event.key !== "Enter" && event.key !== " ") return;
 
   const likeBtn = event.target.closest(".likeBtn");
@@ -121,5 +189,3 @@ function handleLikeKeydown(event) {
   toggleLikeButtonState(likeBtn);
 }
 
-
-//localstorage speichern der favoriten liste kommt als nächstes 
