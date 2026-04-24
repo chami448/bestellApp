@@ -112,17 +112,43 @@ function renderMainInfoSection() {
 
 function renderBasket() {
   return `
-        <aside class="basketSection" id="basketSection" aria-label="Warenkorb">
+        <aside class="basketSection isClosed" id="basketSection" aria-label="Warenkorb" aria-hidden="true">
                 <div class="basketContainer">
+
                     <div class="basketTitleContainer">
                         <h2 class="basketTitle">Warenkorb</h2>
                     </div>
-                    <div class="basketItemsContainer" >
+
+
+                    <div class="basketItemsContainer" aria-label="Warenkorb Items" id="basketItemsContainer">
+                    <p class="emptyBasketText">Ihr Warenkorb ist noch leer.</p>
                         <!-- Hier werden die Warenkorb-Items dynamisch eingefügt -->
                     </div>
-                    <div class="basketTotalContainer">
-                        <p class="basketTotalText">Gesamt: <span id="basketTotalPrice">0,00 €</span></p>
-                    </div>
+
+                    <section class="basketSummarySection" aria-label="Bestellübersicht">
+                        <div class="summaryRow">
+                         <span>Zwischensumme</span>
+                         <span id="summarySubtotal">0,00 €</span>
+                          </div>
+                         <div class="summaryRow">
+                      <span>Pfand</span>
+                      <span id="summaryDeposit">0,00 €</span>
+                      </div>
+                      <div class="summaryRow">
+                        <span>Lieferung</span>
+                         <span id="summaryDelivery">2,99 €</span>
+                      </div>
+                   <div class="summaryRow">
+                    <span>Trinkgeld</span>
+                   <span id="summaryTip">0,00 €</span>
+                     </div>
+                      <div class="summaryRow total">
+                    <span>Gesamt</span>
+                   <span id="summaryTotal">0,00 €</span>
+                     </div>
+                    </section>
+
+                   <section class="deliveryAndTipSection" aria-label="Lieferoptionen und Trinkgeld">
                     <div class="deliveryOptionsContainer">
                         <button class="deliveryOptionButton" id="delivery" tabindex="0">Lieferung</button>
                         <button class="deliveryOptionButton" id="pickup" tabindex="0">Abholung</button>
@@ -135,10 +161,15 @@ function renderBasket() {
                             <button class="tipOptionButton" data-tip="0.15" tabindex="0">15%</button>
                         </div>
                     </div>
+                     </section>
+                     
                     <div class="checkoutContainer">
                     <button class="checkoutButton" id="checkoutButton" tabindex="0">Zur Kasse</button>
                     <p class="minimumOrderNote">Mindestbestellwert: 15,00 €</p>
                     </div>
+
+
+
                 </div>
         </aside>
     
