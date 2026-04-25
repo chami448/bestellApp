@@ -120,7 +120,7 @@ function handleMenuItemClick(event) {
   }
   const addBtn = event.target.closest(".addBtn");
   if (addBtn) {
-      //TODO: Funktionalität für "In den Warenkorb" hinzufügen
+    addItemToBasketFromCard(addBtn);
   }
   
 }
@@ -129,9 +129,16 @@ function handleMenuItemKeydown(event) {
   if (event.key !== "Enter" && event.key !== " ") return;
 
   const likeBtn = event.target.closest(".likeBtn");
-  if (!likeBtn) return;
+  if (likeBtn) {
+    event.preventDefault();
+    toggleLikeButtonState(likeBtn);
+    return;
+  }
 
-  event.preventDefault();
-  toggleLikeButtonState(likeBtn);
+  const addBtn = event.target.closest(".addBtn");
+  if (addBtn) {
+    event.preventDefault();
+    addItemToBasketFromCard(addBtn);
+  }
 }
 

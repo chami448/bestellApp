@@ -48,7 +48,8 @@ function renderPage() {
     renderMainInfoSection() +
     renderMenuTabs() +
     renderBannerFooter() +
-    renderFooterLinks();
+    renderFooterLinks() +
+    renderBasket();
 }
 
 function renderHeader() {
@@ -62,7 +63,7 @@ function renderHeader() {
                         <h1 class="headerTitleText">Mama Sambia</h1>
                         </div>
                         <button class = "headBasketIcon">
-                        <img src="${iconMap.menuCloseIcon}" alt="Menü Symbol" class="menuCloseIcon" tabindex="0">
+                        <img src="${iconMap.menuCloseIcon}" alt="Menü Symbol" class="menuCloseIcon" tabindex="0" type="button" id="basketToggleBtn">
                         <span class="cartBadge" id="cartBadge">0</span>
                         </button>
                    </div>
@@ -120,7 +121,7 @@ function renderBasket() {
                     </div>
 
 
-                    <div class="basketItemsContainer" aria-label="Warenkorb Items" id="basketItemsContainer">
+                    <div class="basketItemsContainer" id="basketItemsContainer" aria-label="Warenkorb Items">
                     <p class="emptyBasketText">Ihr Warenkorb ist noch leer.</p>
                         <!-- Hier werden die Warenkorb-Items dynamisch eingefügt -->
                     </div>
@@ -150,8 +151,8 @@ function renderBasket() {
 
                    <section class="deliveryAndTipSection" aria-label="Lieferoptionen und Trinkgeld">
                     <div class="deliveryOptionsContainer">
-                        <button class="deliveryOptionButton" id="delivery" tabindex="0">Lieferung</button>
-                        <button class="deliveryOptionButton" id="pickup" tabindex="0">Abholung</button>
+                        <button class="deliveryOptionButton" id="btnDeliveryMode" tabindex="0">Lieferung</button>
+                        <button class="deliveryOptionButton" id="btnPickupMode" tabindex="0">Abholung</button>
                     </div>
                     <div class="tipContainer">
                         <p class="tipText">Trinkgeld:</p>
@@ -165,7 +166,7 @@ function renderBasket() {
                      
                     <div class="checkoutContainer">
                     <button class="checkoutButton" id="checkoutButton" tabindex="0">Zur Kasse</button>
-                    <p class="minimumOrderNote">Mindestbestellwert: 15,00 €</p>
+                    <p class="minimumOrderNote" id="minimumOrderInfo">Mindestbestellwert: 15,00 €</p>
                     </div>
 
 

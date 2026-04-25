@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setActiveTab(startCartegory);
     setupMenuTabs();
     setupMenuItemActions();
+    updateBasketUI();
+    updateCartBadge();
 })
 
 function getCategoryItems(category) {
