@@ -122,3 +122,78 @@ function setupBasketPanelToggle() {
   toggleBtn.addEventListener("keydown", handleBasketToggleKeydown);
   document.addEventListener("keydown", handleBasketEscape);
 }
+
+// ── Mengensteuerung ──────────────────────────────────────────
+
+const BASKET_MIN_QTY = 1;
+const BASKET_MAX_QTY = 30;
+
+function setupBasketItemActions() {
+  const container = document.getElementById("basketItemsContainer");
+  if (!container) return;
+  container.addEventListener("click", handleBasketItemClick);
+}
+
+function handleBasketItemClick(event) {
+  const plusBtn = event.target.closest(".qtyPlusBtn");
+  if (plusBtn) return increaseBasketItem(plusBtn);
+
+  const minusBtn = event.target.closest(".qtyMinusBtn");
+  if (minusBtn) return decreaseBasketItem(minusBtn);
+
+  const removeBtn = event.target.closest(".removeItemBtn");
+  if (removeBtn) return removeBasketItem(removeBtn);
+}
+
+function getBasketItemIdentity(btn) {
+  return {
+    name: btn.dataset.itemName,
+    category: btn.dataset.itemCategory,
+  };
+}
+
+function findBasketItemIndex(name, category) {
+  return basketItems.findIndex(
+    (entry) => entry.name === name && entry.category === category
+  );
+}
+
+function increaseBasketItem(btn) {
+  const { name, category } = getBasketItemIdentity(btn);
+  const index = findBasketItemIndex(name, category);
+  if (index === -1) return;
+
+  if (basketItems[index].quantity >= BASKET_MAX_QTY) {
+    alert("Maximale Menge pro Artikel ist " + BASKET_MAX_QTY + ".");
+    return;
+  }
+
+  basketItems[index].quantity += 1;
+  updateBasketUI();
+  updateCartBadge();
+}
+
+function decreaseBasketItem(btn) {
+  const { name, category } = getBasketItemIdentity(btn);
+  const index = findBasketItemIndex(name, category);
+  if (index === -1) return;
+
+  if (basketItems[index].quantity <= BASKET_MIN_QTY) {
+    alert("Mindestmenge ist 1. Nutze X zum Entfernen.");
+    return;
+  }
+
+  basketItems[index].quantity -= 1;
+  updateBasketUI();
+  updateCartBadge();
+}
+
+function removeBasketItem(btn) {
+  const { name, category } = getBasketItemIdentity(btn);
+  const index = findBasketItemIndex(name, category);
+  if (index === -1) return;
+
+  basketItems.splice(index, 1);
+  updateBasketUI();
+  updateCartBadge();
+}

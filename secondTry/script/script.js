@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateBasketUI();
     updateCartBadge();
     setupBasketPanelToggle();
+    setupBasketItemActions(); 
 })
 
 function getCategoryItems(category) {
