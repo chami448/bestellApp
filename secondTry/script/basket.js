@@ -57,17 +57,7 @@ function updateBasketUI() {
     return;
   }
 
-  itemsContainer.innerHTML = basketItems
-    .map(
-      (entry) => `
-        <div class="basketItemRow" aria-label="Warenkorb-Item ${entry.name}">
-          <span class="basketItemName">${entry.name}</span>
-          <span class="basketItemQuantity">x${entry.quantity}</span>
-          <span class="basketItemPrice">${formatEuro(entry.price * entry.quantity)}</span>
-        </div>
-      `
-    )
-    .join("");
+  itemsContainer.innerHTML = basketItems.map(createBasketItemCard).join("");
 
   const subtotal = getBasketSubtotal();
   subtotalNode.textContent = formatEuro(subtotal);

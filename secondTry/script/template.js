@@ -238,3 +238,36 @@ function renderFooterLinks() {
     
     `;
 }
+
+function createBasketItemCard(entry) {
+  return `
+    <div class="basketItemRow" aria-label="Warenkorb-Item ${entry.name}">
+      <div class="basketItemMain">
+        <span class="basketItemName">${entry.name}</span>
+        <span class="basketItemPrice">${formatEuro(entry.price * entry.quantity)}</span>
+      </div>
+
+      <div class="basketItemControls">
+        <button
+          class="qtyBtn qtyMinusBtn"
+          data-item-name="${entry.name}"
+          data-item-category="${entry.category}"
+          type="button">-</button>
+
+        <span class="basketItemQuantity" max="${BASKET_MAX_QTY}" min="${BASKET_MIN_QTY}">${entry.quantity}</span>
+
+        <button
+          class="qtyBtn qtyPlusBtn"
+          data-item-name="${entry.name}"
+          data-item-category="${entry.category}"
+          type="button">+</button>
+
+        <button
+          class="removeItemBtn"
+          data-item-name="${entry.name}"
+          data-item-category="${entry.category}"
+          type="button">X</button>
+      </div>
+    </div>
+  `;
+}
