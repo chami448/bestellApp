@@ -74,3 +74,61 @@ function updateBasketUI() {
   totalNode.textContent = formatEuro(subtotal);
   checkoutButton.disabled = subtotal <= 0;
 }
+
+function getBasketPanel() {
+  return document.getElementById("basketSection");
+}
+
+function isBasketPanelOpen(panel) {
+  return panel.classList.contains("isOpen");
+}
+
+function openBasketPanel() {
+  const panel = getBasketPanel();
+  if (!panel) return;
+
+  panel.classList.remove("isClosed");
+  panel.classList.add("isOpen");
+  panel.setAttribute("aria-hidden", "false");
+}
+
+function closeBasketPanel() {
+  const panel = getBasketPanel();
+  if (!panel) return;
+
+  panel.classList.remove("isOpen");
+  panel.classList.add("isClosed");
+  panel.setAttribute("aria-hidden", "true");
+}
+
+function toggleBasketPanel() {
+  const panel = getBasketPanel();
+  if (!panel) return;
+
+  if (isBasketPanelOpen(panel)) {
+    closeBasketPanel();
+  } else {
+    openBasketPanel();
+  }
+}
+
+function handleBasketToggleKeydown(event) {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  toggleBasketPanel();
+}
+
+function handleBasketEscape(event) {
+  if (event.key !== "Escape") return;
+  closeBasketPanel();
+}
+
+function setupBasketPanelToggle() {
+  const toggleBtn = document.querySelector(".headBasketIcon");
+  const panel = getBasketPanel();
+  if (!toggleBtn || !panel) return;
+
+  toggleBtn.addEventListener("click", toggleBasketPanel);
+  toggleBtn.addEventListener("keydown", handleBasketToggleKeydown);
+  document.addEventListener("keydown", handleBasketEscape);
+}

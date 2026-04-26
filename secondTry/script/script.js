@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMenuItemActions();
     updateBasketUI();
     updateCartBadge();
+    setupBasketPanelToggle();
 })
 
 function getCategoryItems(category) {
