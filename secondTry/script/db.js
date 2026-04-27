@@ -150,6 +150,9 @@ const pickOrDeliveryMode ={
   },
 };
 
+let selectedDeliveryMode = "deliveryMode";
+let selectedTipRate = 0;
+
 const minimumOrderValue = 15.00;
 
 const iconMap = {

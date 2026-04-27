@@ -23,3 +23,11 @@
 .basketContainer {
     padding: 16px;
 }
+
+
+.deliveryOptionButton.isActive,
+.tipOptionButton.isActive {
+    background-color: #222;
+    color: #fff;
+    border-color: #222;
+}

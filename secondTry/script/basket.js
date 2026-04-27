@@ -51,9 +51,14 @@ function updateBasketUI() {
 
   if (basketItems.length === 0) {
     itemsContainer.innerHTML = '<p class="emptyBasketText">Ihr Warenkorb ist noch leer.</p>';
-    subtotalNode.textContent = "0,00 €";
-    totalNode.textContent = "0,00 €";
-    checkoutButton.disabled = true;
+
+    const subtotal = 0;
+    subtotalNode.textContent = formatEuro(subtotal);
+
+    updateSummaryRows(subtotal);
+    updateModeButtonsUI();
+    updateTipButtonsUI();
+    updateMinimumOrderUI(subtotal);
     return;
   }
 
@@ -61,8 +66,11 @@ function updateBasketUI() {
 
   const subtotal = getBasketSubtotal();
   subtotalNode.textContent = formatEuro(subtotal);
-  totalNode.textContent = formatEuro(subtotal);
-  checkoutButton.disabled = subtotal <= 0;
+
+  updateSummaryRows(subtotal);
+  updateModeButtonsUI();
+  updateTipButtonsUI();
+  updateMinimumOrderUI(subtotal);
 }
 
 function getBasketPanel() {
@@ -123,7 +131,6 @@ function setupBasketPanelToggle() {
   document.addEventListener("keydown", handleBasketEscape);
 }
 
-// ── Mengensteuerung ──────────────────────────────────────────
 
 const BASKET_MIN_QTY = 1;
 const BASKET_MAX_QTY = 30;
@@ -196,4 +203,102 @@ function removeBasketItem(btn) {
   basketItems.splice(index, 1);
   updateBasketUI();
   updateCartBadge();
+}
+
+
+
+
+function setupBasketSummaryActions() {
+  const deliveryBtn = document.getElementById("btnDeliveryMode");
+  const pickupBtn = document.getElementById("btnPickupMode");
+  const tipContainer = document.querySelector(".tipOptionsContainer");
+
+  if (deliveryBtn) deliveryBtn.addEventListener("click", () => setDeliveryMode("deliveryMode"));
+  if (pickupBtn) pickupBtn.addEventListener("click", () => setDeliveryMode("pickupMode"));
+  if (tipContainer) tipContainer.addEventListener("click", handleTipClick);
+}
+
+function setDeliveryMode(modeKey) {
+  selectedDeliveryMode = modeKey;
+  updateBasketUI();
+}
+
+function handleTipClick(event) {
+  const tipBtn = event.target.closest(".tipOptionButton");
+  if (!tipBtn) return;
+  selectedTipRate = Number(tipBtn.dataset.tip) || 0;
+  updateBasketUI();
+}
+
+
+function getDepositTotal() {
+  return basketItems.reduce((sum, entry) => {
+    const deposit = entry.deposit || 0;
+    return sum + deposit * entry.quantity;
+  }, 0);
+}
+
+function getDeliveryCost() {
+  const mode = pickOrDeliveryMode[selectedDeliveryMode];
+  return mode ? mode.cost : 0;
+}
+
+function getTipAmount(subtotal) {
+  return subtotal * selectedTipRate;
+}
+
+function getGrandTotal() {
+  const subtotal = getBasketSubtotal();
+  const deposit = getDepositTotal();
+  const delivery = getDeliveryCost();
+  const tipAmount = getTipAmount(subtotal);
+  return subtotal + deposit + delivery + tipAmount;
+}
+
+
+function updateSummaryRows(subtotal) {
+  const depositNode = document.getElementById("summaryDeposit");
+  const deliveryNode = document.getElementById("summaryDelivery");
+  const tipNode = document.getElementById("summaryTip");
+  const totalNode = document.getElementById("summaryTotal");
+
+  if (depositNode) depositNode.textContent = formatEuro(getDepositTotal());
+  if (deliveryNode) deliveryNode.textContent = formatEuro(getDeliveryCost());
+  if (tipNode) tipNode.textContent = formatEuro(getTipAmount(subtotal));
+  if (totalNode) totalNode.textContent = formatEuro(getGrandTotal());
+}
+
+function updateModeButtonsUI() {
+  const deliveryBtn = document.getElementById("btnDeliveryMode");
+  const pickupBtn = document.getElementById("btnPickupMode");
+  if (deliveryBtn) deliveryBtn.classList.toggle("isActive", selectedDeliveryMode === "deliveryMode");
+  if (pickupBtn) pickupBtn.classList.toggle("isActive", selectedDeliveryMode === "pickupMode");
+}
+
+function updateTipButtonsUI() {
+  const tipButtons = document.querySelectorAll(".tipOptionButton");
+  tipButtons.forEach((btn) => {
+    const value = Number(btn.dataset.tip) || 0;
+    btn.classList.toggle("isActive", value === selectedTipRate);
+  });
+}
+
+function updateMinimumOrderUI(subtotal) {
+  const minimumOrderInfo = document.getElementById("minimumOrderInfo");
+  const checkoutButton = document.getElementById("checkoutButton");
+  if (!minimumOrderInfo || !checkoutButton) return;
+
+  if (selectedDeliveryMode === "pickupMode") {
+    minimumOrderInfo.hidden = true;
+    checkoutButton.disabled = subtotal <= 0;
+    return;
+  }
+
+  minimumOrderInfo.hidden = false;
+  const missing = Math.max(0, minimumOrderValue - subtotal);
+  minimumOrderInfo.textContent =
+    missing > 0
+      ? `Es fehlen noch ${formatEuro(missing)} bis zum Mindestbestellwert.`
+      : `Mindestbestellwert erreicht.`;
+  checkoutButton.disabled = subtotal < minimumOrderValue;
 }
