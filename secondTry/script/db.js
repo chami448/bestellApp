@@ -1,11 +1,13 @@
 let mainCourse = [
   {
+    id: "dishes-1",
     name: "Fufu - 300g",
     price: 5.0,
     description:
       "A traditional West African dish made from cassava flour, often served with soup or stew.",
   },
   {
+    id: "dishes-2",
     name: "Jollof Rice - 300g",
     price: 7.0,
     description:
@@ -15,35 +17,41 @@ let mainCourse = [
 
 let sideDishes = [
   {
+    id: "supplements-1",
     name: "Pepper Stew",
     price: 14.0,
     description: "A spicy stew made with peppers, tomatoes, onions.",
   },
   {
+    id: "supplements-2",
     name: "Casava Leaves",
     price: 8.5,
     description:
       "A dish made from the leaves of the cassava plant, often cooked with palm oil and spices.",
   },
   {
+    id: "supplements-3",
     name: "Okra Soup",
     price: 12.5,
     description:
       "A flavorful soup made with okra, tomatoes, onions, and various spices.",
   },
   {
+    id: "supplements-4",
     name: "Capenta",
     price: 10.5,
     description:
       "A dish made from small dried fish, often served with sadza or rice.",
   },
   {
+    id: "supplements-5",
     name: "Ogbono Soup",
     price: 13.5,
     description:
       "A thick soup made from ground ogbono seeds, often cooked with meat and vegetables.",
   },
   {
+    id: "supplements-6",
     name: "Madesu",
     price: 12.0,
     description:
@@ -53,36 +61,43 @@ let sideDishes = [
 
 let softDrinks = [
   {
+    id: "drinks-1",
     name: "Coca-Cola",
     price: 3.5,
     deposit: 0.25,
   },
   {
+    id: "drinks-2",
     name: "Fanta",
     price: 3.5,
     deposit: 0.25,
   },
   {
+    id: "drinks-3",
     name: "Sprite",
     price: 3.5,
     deposit: 0.25,
   },
   {
+    id: "drinks-4",
     name: "Water",
     price: 2.0,
     deposit: 0.25,
   },
   {
+    id: "drinks-5",
     name: "Orange Juice",
     price: 4.0,
     deposit: 0.25,
   },
   {
+    id: "drinks-6",
     name: "Apple Juice",
     price: 4.0,
     deposit: 0.25,
   },
   {
+    id: "drinks-7",
     name: "Mango Juice",
     price: 4.0,
     deposit: 0.25,
@@ -91,21 +106,25 @@ let softDrinks = [
 
 let spiritsDrinks = [
   {
+    id: "alcoholic-1",
     name: "Krombacher Pils",
     price: 5.0,
     deposit: 0.25,
   },
   {
+    id: "alcoholic-2",
     name: "Heineken",
     price: 5.0,
     deposit: 0.25,
   },
   {
+    id: "alcoholic-3",
     name: "Guinness",
     price: 6.0,
     deposit: 0.25,
   },
   {
+    id: "alcoholic-4",
     name: "Red Wine",
     price: 7.0,
     deposit: 0.25,
