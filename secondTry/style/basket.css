@@ -5,11 +5,12 @@
     width: 360px;
     max-width: 100%;
     height: calc(100vh - 100px);
-    background-color: white;
+    background-color: var(--secondary-color);
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
     transition: transform 0.3s ease;
     z-index: 200;
+    font-family: 'Ubuntu-light', sans-serif;
 }
 
 .basketSection.isClosed {
@@ -22,6 +23,22 @@
 
 .basketContainer {
     padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.basketTitleContainer{
+    color: var(--text-color);
+    font-size: 25px;
+}
+
+.emptyBasketText{
+    color: var(--highlight-color);
+    font-size: 18px;
+    text-align: center;
 }
 
 
