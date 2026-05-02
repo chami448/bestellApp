@@ -50,7 +50,8 @@ function renderPage() {
     renderMenuTabs() +
     renderBannerFooter() +
     renderFooterLinks() +
-    renderBasket();
+    renderBasket() +
+    renderCheckoutDialog();
 }
 
 function renderHeader() {
@@ -272,9 +273,19 @@ function createBasketItemCard(entry) {
 
 function renderCheckoutDialog(){
     return `
-    <dialog id="checkoutDialog" class="checkoutDialog">
-    
-
+    <dialog id="checkoutDialog" class="checkoutDialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="checkoutMessageText">
+        <div class="dialogContent">
+            <div class="dialogHeader">
+            <h3 class="dialogTitle" id="dialogTitle" aria-label="Probebestellung abgeschlossen!">Probebestellung abgeschlossen!</h3>
+            <button class="closeDialogIcon" type="button" id="closeDialogIcon" aria-label="Dialog schließen">X</button>
+            </div>
+            <div class="dialogMessage" id="checkoutMessage">
+                <p id="checkoutMessageText"></p>
+            </div>
+            <div class="dialogActions">
+                <button type="button" id="closeDialogBtn" class="dialogButton" aria-label="Dialog schließen">OK</button>
+            </div>
+        </div>
     </dialog>
 
     `;
