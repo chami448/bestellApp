@@ -4,6 +4,7 @@ function createMenuItemCard(item, category, index, isFavorite) {
   div.dataset.itemName = item.name;
   div.dataset.category = category;
   div.dataset.itemIndex = index;
+  div.dataset.itemId = item.id;
   div.innerHTML = `
     <div class="menuItemHeader">
         <h3 aria-label="${item.name}">${item.name}</h3>
@@ -250,22 +251,19 @@ function createBasketItemCard(entry) {
       <div class="basketItemControls">
         <button
           class="qtyBtn qtyMinusBtn"
-          data-item-name="${entry.name}"
-          data-item-category="${entry.category}"
+          data-item-id="${entry.id}"
           type="button">-</button>
 
         <span class="basketItemQuantity" max="${BASKET_MAX_QTY}" min="${BASKET_MIN_QTY}">${entry.quantity}</span>
 
         <button
           class="qtyBtn qtyPlusBtn"
-          data-item-name="${entry.name}"
-          data-item-category="${entry.category}"
+            data-item-id="${entry.id}"
           type="button">+</button>
 
         <button
           class="removeItemBtn"
-          data-item-name="${entry.name}"
-          data-item-category="${entry.category}"
+          data-item-id="${entry.id}"
           type="button">X</button>
       </div>
     </div>

@@ -20,7 +20,7 @@ function addItemToBasketFromCard(addBtn) {
 
 function addToBasket(item, category) {
   const existingIndex = basketItems.findIndex(
-    (entry) => entry.name === item.name && entry.category === category
+    (entry) => entry.id === item.id
   );
 
   if (existingIndex !== -1) {
@@ -154,20 +154,19 @@ function handleBasketItemClick(event) {
 
 function getBasketItemIdentity(btn) {
   return {
-    name: btn.dataset.itemName,
-    category: btn.dataset.itemCategory,
+    id: btn.dataset.itemId
   };
 }
 
-function findBasketItemIndex(name, category) {
+function findBasketItemIndex(id) {
   return basketItems.findIndex(
-    (entry) => entry.name === name && entry.category === category
+    (entry) => entry.id === id  
   );
 }
 
 function increaseBasketItem(btn) {
-  const { name, category } = getBasketItemIdentity(btn);
-  const index = findBasketItemIndex(name, category);
+  const { id } = getBasketItemIdentity(btn);
+  const index = findBasketItemIndex(id);
   if (index === -1) return;
 
   if (basketItems[index].quantity >= BASKET_MAX_QTY) {
@@ -181,8 +180,8 @@ function increaseBasketItem(btn) {
 }
 
 function decreaseBasketItem(btn) {
-  const { name, category } = getBasketItemIdentity(btn);
-  const index = findBasketItemIndex(name, category);
+  const { id } = getBasketItemIdentity(btn);
+  const index = findBasketItemIndex(id);
   if (index === -1) return;
 
   if (basketItems[index].quantity <= BASKET_MIN_QTY) {
@@ -196,8 +195,8 @@ function decreaseBasketItem(btn) {
 }
 
 function removeBasketItem(btn) {
-  const { name, category } = getBasketItemIdentity(btn);
-  const index = findBasketItemIndex(name, category);
+  const { id } = getBasketItemIdentity(btn);
+  const index = findBasketItemIndex(id);
   if (index === -1) return;
 
   basketItems.splice(index, 1);
