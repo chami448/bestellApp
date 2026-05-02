@@ -276,7 +276,7 @@ function renderCheckoutDialog(){
     <dialog id="checkoutDialog" class="checkoutDialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="checkoutMessageText">
         <div class="dialogContent">
             <div class="dialogHeader">
-            <h3 class="dialogTitle" id="dialogTitle" aria-label="Probebestellung abgeschlossen!">Probebestellung abgeschlossen!</h3>
+            <h3 class="dialogTitle" id="dialogTitle">Probebestellung abgeschlossen!</h3>
             <button class="closeDialogIcon" type="button" id="closeDialogIcon" aria-label="Dialog schließen">X</button>
             </div>
             <div class="dialogMessage" id="checkoutMessage">

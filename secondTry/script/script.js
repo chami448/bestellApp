@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupBasketPanelToggle();
     setupBasketItemActions(); 
     setupBasketSummaryActions();
+    setupCheckoutDialog();
 })
 
 function getCategoryItems(category) {
