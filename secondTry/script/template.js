@@ -269,3 +269,13 @@ function createBasketItemCard(entry) {
     </div>
   `;
 }
+
+function renderCheckoutDialog(){
+    return `
+    <dialog id="checkoutDialog" class="checkoutDialog">
+    
+
+    </dialog>
+
+    `;
+}
