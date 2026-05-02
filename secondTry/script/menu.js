@@ -45,12 +45,15 @@ function setActiveTab(activeCategory) {
 
 function getItemFromCardData(card) {
   const itemName = card.dataset.itemName;
+  const itemId = card.dataset.itemId;
   const category = card.dataset.category;
   const itemIndex = Number(card.dataset.itemIndex);
   const sourceItems = getCategoryItems(category);
-  const item = sourceItems[itemIndex];
 
-  return { itemName, category, item };
+  const itemById = sourceItems.find((entry) => entry.id === itemId);
+  const item = itemById || sourceItems[itemIndex];
+
+  return { itemName, itemId, category, item };
 }
 
 function toggleLikeButtonState(likeBtn) {
