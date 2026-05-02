@@ -161,10 +161,12 @@ let basketItems = [];
 const pickOrDeliveryMode ={
   deliveryMode : {
     label : "Lieferung",
+    message : "Ihre Probebestellung wird in ca. 30-45 Minuten geliefert.",
     cost : 2.99,
   },
   pickupMode : {
     label : "Abholung",
+    message : "Ihre Probebestellung kann in ca. 15-20 Minuten abgeholt werden.",
     cost : 0,
   },
 };
