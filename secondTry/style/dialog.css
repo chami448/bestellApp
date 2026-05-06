@@ -22,6 +22,7 @@
 
 .checkoutDialog::backdrop {
   background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(9px);
 }
 
 .dialogContent {
