@@ -4,7 +4,10 @@
     box-sizing: border-box;
     font-family: "Ubuntu", sans-serif;
 }
-
+html, body{
+    width: 100%;
+    overflow-x: hidden;
+}
 :root {
     --primary-color: #faebd7;
     --secondary-color: #deb887;

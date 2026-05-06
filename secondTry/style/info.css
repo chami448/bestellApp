@@ -57,5 +57,15 @@
 
   .mainInfoTitle {
     text-align: center;
+    font-size: 26px;
   }
+}
+
+@media (max-width:380px){
+    .mainInfoTextContainer, .mainInfoHighlightContainer{
+        font-size: 18px;
+    }
+    .mainInfoTitle{
+        font-size: 22px;
+    }
 }

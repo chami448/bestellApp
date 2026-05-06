@@ -58,3 +58,20 @@ header{
     font-size: 24px;
 }
 
+@media(max-width: 600px){
+    .headerTitleText{
+        font-size: 40px;
+    }
+}
+
+@media(max-width: 460px){
+    .headerTitleText{
+        font-size: 32px;
+    }
+}
+
+@media(max-width: 380px){
+    .headerTitleText{
+        font-size: 24px;
+    }
+}
