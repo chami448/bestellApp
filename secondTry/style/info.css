@@ -41,3 +41,21 @@
     color: var(--highlight-color);
     font-weight: bold;
 }
+
+@media (max-width: 1000px) {
+  .mainInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mainInfoTitleContainer {
+    align-self: center;   
+    text-align: center;   
+    width: 100%;
+  }
+
+  .mainInfoTitle {
+    text-align: center;
+  }
+}
