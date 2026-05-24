@@ -15,7 +15,7 @@
 
 .menuTabsNav{
     display: flex;
-    gap: 80px;
+    gap: 40px;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }

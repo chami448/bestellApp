@@ -17,7 +17,7 @@
   inset: 0;
   margin: auto;
   display: flex;
-  z-index: 1200;
+  z-index: 1500;
 }
 
 .checkoutDialog::backdrop {

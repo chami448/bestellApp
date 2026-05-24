@@ -5,6 +5,7 @@
     aspect-ratio: 16 / 6;
     overflow: visible;
     display: block;
+    margin-top: 20px;
 }
 
 .headerBanner{
@@ -34,7 +35,7 @@
     object-fit: cover;
     display: block;
     border-radius: 14px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 @media (max-width: 1000px) {
