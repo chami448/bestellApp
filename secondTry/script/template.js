@@ -60,10 +60,7 @@ function renderHeader() {
                    <div class="headerContainer">
                         <div class = "headLogo">
                         <img src="${imageMap.headerLogo}" alt="Kopfzeilen Logo" class="headerLogo">
-                        </div>
-                        <div class = "headerTitle">
-                        <h1 class="headerTitleText">Mama Sambia</h1>
-                        </div>
+                        </div>   
                         <button class = "headBasketIcon">
                         <img src="${iconMap.menuCloseIcon}" alt="Menü Symbol" class="menuCloseIcon" tabindex="0" type="button" id="basketToggleBtn">
                         <span class="cartBadge" id="cartBadge">0</span>
