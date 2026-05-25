@@ -225,7 +225,9 @@ function setDeliveryMode(modeKey) {
 function handleTipClick(event) {
   const tipBtn = event.target.closest(".tipOptionButton");
   if (!tipBtn) return;
-  selectedTipRate = Number(tipBtn.dataset.tip) || 0;
+
+  const clickedRate = Number(tipBtn.dataset.tip) || 0;
+  selectedTipRate = selectedTipRate === clickedRate ? 0 : clickedRate;
   updateBasketUI();
 }
 

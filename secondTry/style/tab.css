@@ -113,3 +113,19 @@
 .likeBtn:hover{
     background-color: var(--highlight-color);
 }
+
+@media(max-width: 800px){
+    .menuTabsContainer{
+        gap: 40px;
+    }
+    .menuTab{
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    .menuItemCard{
+        width: 100%;
+        max-width: 350px;
+        max-height: 400px;
+    }
+
+}

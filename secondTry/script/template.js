@@ -199,28 +199,6 @@ function renderMenuTabs() {
     
     `;
 }
-/*
-function renderMenuItemCard(item, category, index){
-    return`
-        <div class="menuItemCard" aria-label="Menü Item Karten">
-            <div class="menuItemHeader">
-        <h3 aria-label="${item.name}">${item.name}</h3>
-        <span aria-label="Preis: ${item.price.toFixed(2)} Euro" class="price">${item.price.toFixed(2)} €</span>
-    </div>
-    <div class="menuItemText">
-        <p aria-label="Beschreibung: ${item.description || "Keine Beschreibung vorhanden"}">${item.description || "Keine Beschreibung vorhanden"}</p>
-    </div>
-    <div class="menuItemActions">
-        <button class="addBtn" aria-label="Zum Korb hinzufügen ${item.name}?" title="Zum Korb hinzufügen">
-            <img src="${iconMap.addIcon}" alt="Hinzufügen">
-        </button>
-        <button class="likeBtn" aria-label="Zu Favoriten hinzufügen ${item.name}?" title="Zu Favoriten hinzufügen">
-            <img class="likeIcon" src="${iconMap.likeIcon}" alt="Zu Favoriten hinzufügen">
-            <img class="likedIcon" src="${iconMap.likedIcon}" alt="Ist Favorit">
-        </button>
-    </div>
-    `;
-}*/
 
 function renderBannerFooter() {
   return `

@@ -57,11 +57,42 @@ header{
     font-family: 'Ubuntu-bold', sans-serif;
     font-size: 24px;
 }
-/*
+
+
+@media(max-width: 800px){
+    .headerTitleText{
+        font-size: 45px;
+    }
+    .headBasketIcon{
+        width: 50px;
+        height: 50px;
+    }
+    .headerLogo{
+        width: 50px;
+        height: 50px;
+    }
+    #cartBadge{
+        font-size: 20px;
+    }
+}
 
 @media(max-width: 600px){
     .headerTitleText{
         font-size: 40px;
+    }
+}
+@media(max-width: 500px){
+    .headBasketIcon{
+        width: 40px;
+        height: 40px;
+    }
+    .headerLogo{
+        width: 40px;
+        height: 40px;
+    }
+    #cartBadge{
+        font-size: 14px;
+        padding: 2px 6px;
     }
 }
 
@@ -69,10 +100,15 @@ header{
     .headerTitleText{
         font-size: 32px;
     }
+     #cartBadge{
+        font-size: 12px;
+        padding: 2px 6px;
+    }
+
 }
 
 @media(max-width: 380px){
     .headerTitleText{
-        font-size: 24px;
+        font-size: 26px;
     }
 }
