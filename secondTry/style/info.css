@@ -15,15 +15,17 @@
     align-items: center;
     font-family: 'Ubuntu', sans-serif;
     gap: 50px;
+    margin-top: 90px;
     
 }
 
+/*
 .mainInfoTitleContainer{
     text-align: left;
     align-self: flex-start;
     padding: 10px;
     margin: 0;
-}
+}*/
 
 .mainInfoTitle{
     text-decoration: underline;
